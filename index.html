@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Zero Quantum Frequency</title>
+<title>Mind Calm Calculator</title>
 
 <style>
 body{
@@ -19,64 +19,45 @@ height:100vh;
 text-align:center;
 }
 
-/* Card */
 .container{
 width:90%;
 max-width:400px;
-}
-
-/* Title */
-.title{
-font-size:26px;
-margin-bottom:20px;
-color:#f5d06f;
-}
-
-/* Button */
-.button{
-background:#f5d06f;
-color:#000;
-padding:15px;
-border-radius:30px;
-font-size:18px;
-cursor:pointer;
-margin-top:20px;
-}
-
-/* Result Box */
-.result{
-margin-top:20px;
-font-size:18px;
-min-height:60px;
-}
-
-/* Premium Popup */
-.popup{
-position:fixed;
-top:0;
-left:0;
-width:100%;
-height:100%;
-background:rgba(0,0,0,0.9);
-display:none;
-justify-content:center;
-align-items:center;
-}
-
-.popup-content{
-background:#111;
+background:#0b1c1c;
 padding:25px;
 border-radius:15px;
-width:80%;
-text-align:center;
 }
 
-.unlock{
-background:#f5d06f;
+.title{
+font-size:22px;
+color:#f5d06f;
+margin-bottom:15px;
+}
+
+input{
+width:100%;
 padding:12px;
-border-radius:25px;
+border-radius:10px;
+border:none;
+margin-top:10px;
+font-size:16px;
+}
+
+button{
 margin-top:15px;
+padding:12px;
+width:100%;
+border:none;
+border-radius:25px;
+background:#f5d06f;
+color:#000;
+font-size:16px;
 cursor:pointer;
+}
+
+.result{
+margin-top:20px;
+font-size:16px;
+line-height:1.6;
 }
 </style>
 </head>
@@ -85,69 +66,41 @@ cursor:pointer;
 
 <div class="container">
 
-<div class="title">आज का संकेत</div>
+<div class="title">🧠 Mind Calm Calculator</div>
 
-<div class="button" onclick="showMessage()">
-Tap to Reveal
-</div>
+<input type="number" id="stress" placeholder="Stress level (1–10)">
+
+<button onclick="calculateCalm()">Calm Now</button>
 
 <div class="result" id="result"></div>
 
 </div>
 
-<!-- Premium Popup -->
-<div class="popup" id="popup">
-<div class="popup-content">
-
-<h3>🔒 Premium Unlock</h3>
-
-<p>आपका अगला संकेत Premium में unlock होगा</p>
-<p>₹99/month (₹3/day)</p>
-
-<div class="unlock" onclick="unlockPremium()">
-Unlock Now
-</div>
-
-</div>
-</div>
-
 <script>
 
-let messages = [
-"आज निर्णय लेने का सही समय है",
-"जो रुका है, उसे आगे बढ़ाओ",
-"आपकी ऊर्जा आकर्षण में है",
-"आज शांत रहना ही शक्ति है",
-"कोई नया अवसर आने वाला है"
-];
+function calculateCalm(){
 
-// free limit
-let freeLimit = 2;
+let stress = document.getElementById("stress").value;
 
-// load count
-let count = localStorage.getItem("useCount") || 0;
-
-function showMessage(){
-
-if(count >= freeLimit){
-document.getElementById("popup").style.display="flex";
+if(!stress){
+alert("Please enter stress level");
 return;
 }
 
-// random message
-let msg = messages[Math.floor(Math.random()*messages.length)];
+let output = "";
 
-document.getElementById("result").innerText = msg;
-
-// increase count
-count++;
-localStorage.setItem("useCount",count);
-
+if(stress <= 3){
+output = "आप पहले से ही शांत अवस्था में हैं। बस अपनी सांस पर ध्यान बनाए रखें।";
+}
+else if(stress <= 6){
+output = "4 सेकंड सांस लें, 4 सेकंड रोकें, 4 सेकंड छोड़ें। इसे 5 बार करें। मन शांत होगा।";
+}
+else{
+output = "आंखें बंद करें। 6 सेकंड गहरी सांस लें, 6 सेकंड छोड़ें। 2 मिनट तक करें। आप तुरंत हल्का महसूस करेंगे।";
 }
 
-// unlock button (demo)
-function unlockPremium(){
-alert("Payment integration yahan add karo");
+document.getElementById("result").innerText = output;
+
 }
 
 </script>
