@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>ZQ Frequency</title>
+<title>Zero Quantum Frequency</title>
 
 <style>
 body{
@@ -12,16 +12,14 @@ margin:0;
 font-family:sans-serif;
 background:linear-gradient(180deg,#000,#021414);
 color:#fff;
-}
-
-/* Pages */
-.page{
-display:none;
-padding:20px;
 text-align:center;
 }
-.active{
-display:block;
+
+/* Container */
+.container{
+max-width:500px;
+margin:auto;
+padding:20px;
 }
 
 /* Card */
@@ -32,7 +30,7 @@ border-radius:15px;
 margin-top:20px;
 }
 
-/* Premium */
+/* Premium Bar */
 .premiumBox{
 margin:15px 0;
 padding:12px;
@@ -47,63 +45,42 @@ cursor:pointer;
 .btn{
 background:#f5d06f;
 color:#000;
-padding:12px;
+padding:14px;
 border-radius:25px;
-margin-top:10px;
-cursor:pointer;
-}
-
-/* Options */
-.option{
-background:#132c2c;
-padding:12px;
-border-radius:10px;
-margin-top:10px;
-cursor:pointer;
-}
-.option.active{
-border:2px solid #f5d06f;
-}
-
-.result{
 margin-top:15px;
-line-height:1.6;
+cursor:pointer;
+font-size:16px;
 }
 
-/* Nav */
-.nav{
-position:fixed;
-bottom:0;
-width:100%;
-display:flex;
-justify-content:space-around;
-background:#111;
-padding:10px;
-}
-.nav div{
-cursor:pointer;
+/* Quote */
+.quote{
+margin-top:10px;
+line-height:1.6;
+color:#d6e2ff;
 }
 </style>
 </head>
 
 <body>
 
-<!-- HOME -->
-<div id="home" class="page active">
+<div class="container">
 
 <h2>Zero Quantum Frequency™</h2>
 
 <div class="card">
 
-<div class="premiumBox" onclick="openPage('premium')">
+<!-- Premium -->
+<div class="premiumBox" onclick="openPremium()">
 🔒 Unlock Premium – ₹199 (10 Tools)
 </div>
 
-<div>
+<!-- Quote -->
+<div class="quote">
 “जो स्वयं को जान लेता है उसे संसार पर विजय की आवश्यकता नहीं रहती।”
 </div>
 
-<div class="btn" onclick="openPage('tools')">
+<!-- Tools Button -->
+<div class="btn" onclick="openTools()">
 🧠 10 Powerful Tools
 </div>
 
@@ -111,134 +88,23 @@ cursor:pointer;
 
 </div>
 
-<!-- PREMIUM PAGE -->
-<div id="premium" class="page">
-
-<h2>🔒 Premium Toolkit</h2>
-
-<div class="card">
-
-<p>₹199 (One Time)</p>
-
-<p>✔ 10 Powerful Tools</p>
-<p>✔ Mind Transformation</p>
-<p>✔ Unlimited Access</p>
-
-<div class="btn" onclick="buyPremium()">
-Buy Now
-</div>
-
-</div>
-
-</div>
-
-<!-- TOOLS PAGE -->
-<div id="tools" class="page">
-
-<h2>🧠 Premium Tools</h2>
-
-<div class="card">
-
-<div class="btn" onclick="openPage('tool1')">🧠 Mind Calm</div>
-<div class="btn" onclick="openPage('tool2')">💰 Wealth Energy</div>
-<div class="btn" onclick="openPage('tool3')">❤️ Relationship</div>
-<div class="btn" onclick="openPage('tool4')">🔮 Destiny</div>
-<div class="btn" onclick="openPage('tool5')">⚡ Energy</div>
-<div class="btn" onclick="openPage('tool6')">🧘 Meditation</div>
-<div class="btn" onclick="openPage('tool7')">🧠 Thought Convert</div>
-<div class="btn" onclick="openPage('tool8')">🎯 Focus</div>
-<div class="btn" onclick="openPage('tool9')">🔥 Karma</div>
-<div class="btn" onclick="openPage('tool10')">🌌 Timing</div>
-
-</div>
-
-</div>
-
-<!-- TOOL 1 (Mind Calm already working) -->
-<div id="tool1" class="page">
-
-<h2>🧠 Mind Calm</h2>
-
-<div class="card">
-
-<div class="option" onclick="selectCase('low',this)">🙂 हल्का तनाव</div>
-<div class="option" onclick="selectCase('medium',this)">😐 ज्यादा सोच</div>
-<div class="option" onclick="selectCase('high',this)">😣 बहुत तनाव</div>
-
-<div class="btn" onclick="calculateCalm()">Calm Now</div>
-
-<div class="result" id="result"></div>
-
-</div>
-
-</div>
-
-<!-- बाकी tools simple output -->
-<div id="tool2" class="page"><div class="card"><h3>💰 Wealth Energy</h3><div class="btn" onclick="showResult('आपकी wealth frequency बढ़ रही है 🔥')">Check</div><div class="result" id="r2"></div></div></div>
-<div id="tool3" class="page"><div class="card"><h3>❤️ Relationship</h3><div class="btn" onclick="showResult('आज संवाद ही समाधान है ❤️')">Check</div><div class="result" id="r3"></div></div></div>
-<div id="tool4" class="page"><div class="card"><h3>🔮 Destiny</h3><div class="btn" onclick="showResult('आज निर्णय लेने का सही समय है')">Check</div><div class="result" id="r4"></div></div></div>
-<div id="tool5" class="page"><div class="card"><h3>⚡ Energy</h3><div class="btn" onclick="showResult('आपकी ऊर्जा बढ़ रही है ⚡')">Check</div><div class="result" id="r5"></div></div></div>
-<div id="tool6" class="page"><div class="card"><h3>🧘 Meditation</h3><div class="btn" onclick="showResult('2 मिनट श्वास पर ध्यान दें')">Start</div><div class="result" id="r6"></div></div></div>
-<div id="tool7" class="page"><div class="card"><h3>🧠 Thought</h3><div class="btn" onclick="showResult('नकारात्मक विचार को छोड़ें, आप सक्षम हैं')">Convert</div><div class="result" id="r7"></div></div></div>
-<div id="tool8" class="page"><div class="card"><h3>🎯 Focus</h3><div class="btn" onclick="showResult('आज एक काम पर ध्यान दें')">Check</div><div class="result" id="r8"></div></div></div>
-<div id="tool9" class="page"><div class="card"><h3>🔥 Karma</h3><div class="btn" onclick="showResult('आपका कर्म सही दिशा में है')">Check</div><div class="result" id="r9"></div></div></div>
-<div id="tool10" class="page"><div class="card"><h3>🌌 Timing</h3><div class="btn" onclick="showResult('आज का समय अनुकूल है')">Check</div><div class="result" id="r10"></div></div></div>
-
-<!-- NAV -->
-<div class="nav">
-<div onclick="openPage('home')">🏠 Home</div>
-<div onclick="openPage('premium')">💰 Premium</div>
-</div>
-
 <script>
 
-let selectedCase = "";
+/* Open Premium Page */
+function openPremium(){
+window.location.href = "premium.html";
+}
 
-/* Navigation */
-function openPage(id){
+/* Open Tools Folder */
+function openTools(){
 
-if((id.startsWith("tool") || id === "tools") && !localStorage.getItem("premium")){
+if(!localStorage.getItem("premium")){
 alert("यह Premium Feature है");
-openPage("premium");
+window.location.href = "premium.html";
 return;
 }
 
-document.querySelectorAll(".page").forEach(p=>{
-p.classList.remove("active");
-});
-
-document.getElementById(id).classList.add("active");
-}
-
-/* Buy */
-function buyPremium(){
-localStorage.setItem("premium","yes");
-alert("Premium Activated ✅");
-openPage("tools");
-}
-
-/* Mind Calm */
-function selectCase(type,el){
-selectedCase = type;
-document.querySelectorAll(".option").forEach(o=>o.classList.remove("active"));
-el.classList.add("active");
-}
-
-function calculateCalm(){
-if(!selectedCase){alert("स्थिति चुनें"); return;}
-
-let output = selectedCase === "low" ? 
-"आप शांत हैं। 5 गहरी सांस लें" :
-selectedCase === "medium" ?
-"4-4-4 breathing करें" :
-"6 सेकंड गहरी सांस लें-छोड़ें";
-
-document.getElementById("result").innerText = output;
-}
-
-/* Common result */
-function showResult(text){
-event.target.parentElement.querySelector(".result").innerText = text;
+window.location.href = "premium/tools.html";
 }
 
 </script>
