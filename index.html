@@ -4,99 +4,226 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Mind Calm Calculator</title>
+<title>ZQ Frequency</title>
 
 <style>
 body{
 margin:0;
 font-family:sans-serif;
-background:linear-gradient(180deg,#000000,#021414);
+background:linear-gradient(180deg,#000,#021414);
 color:#fff;
-display:flex;
-justify-content:center;
-align-items:center;
-height:100vh;
+}
+
+/* Pages */
+.page{
+display:none;
+padding:20px;
 text-align:center;
 }
+.active{
+display:block;
+}
 
-.container{
-width:90%;
-max-width:400px;
+/* Card */
+.card{
 background:#0b1c1c;
-padding:25px;
+padding:20px;
 border-radius:15px;
+margin-top:20px;
 }
 
-.title{
-font-size:22px;
-color:#f5d06f;
-margin-bottom:15px;
-}
-
-input{
-width:100%;
+/* Premium */
+.premiumBox{
+margin:15px 0;
 padding:12px;
-border-radius:10px;
-border:none;
-margin-top:10px;
-font-size:16px;
-}
-
-button{
-margin-top:15px;
-padding:12px;
-width:100%;
-border:none;
-border-radius:25px;
-background:#f5d06f;
+border-radius:12px;
+background:linear-gradient(135deg,#f5d06f,#caa84c);
 color:#000;
-font-size:16px;
+font-weight:bold;
 cursor:pointer;
 }
 
+/* Button */
+.btn{
+background:#f5d06f;
+color:#000;
+padding:12px;
+border-radius:25px;
+margin-top:15px;
+cursor:pointer;
+}
+
+/* Options */
+.option{
+background:#132c2c;
+padding:12px;
+border-radius:10px;
+margin-top:10px;
+cursor:pointer;
+}
+.option.active{
+border:2px solid #f5d06f;
+}
+
 .result{
-margin-top:20px;
-font-size:16px;
+margin-top:15px;
 line-height:1.6;
+}
+
+/* Nav */
+.nav{
+position:fixed;
+bottom:0;
+width:100%;
+display:flex;
+justify-content:space-around;
+background:#111;
+padding:10px;
+}
+.nav div{
+cursor:pointer;
 }
 </style>
 </head>
 
 <body>
 
-<div class="container">
+<!-- HOME -->
+<div id="home" class="page active">
 
-<div class="title">🧠 Mind Calm Calculator</div>
+<h2>Zero Quantum Frequency™</h2>
 
-<input type="number" id="stress" placeholder="Stress level (1–10)">
+<div class="card">
 
-<button onclick="calculateCalm()">Calm Now</button>
+<div class="premiumBox" onclick="openPage('premium')">
+🔒 Unlock Premium – ₹199 (10 Tools)
+</div>
+
+<div>
+“जो स्वयं को जान लेता है उसे संसार पर विजय की आवश्यकता नहीं रहती।”
+</div>
+
+<div class="btn" onclick="openPage('tool')">
+आज क्या संकेत है?
+</div>
+
+</div>
+
+</div>
+
+<!-- PREMIUM PAGE -->
+<div id="premium" class="page">
+
+<h2>🔒 Premium Toolkit</h2>
+
+<div class="card">
+
+<p>₹199 (One Time)</p>
+
+<p>✔ 10 Powerful Tools</p>
+<p>✔ Mind Transformation</p>
+<p>✔ Unlimited Access</p>
+
+<div class="btn" onclick="buyPremium()">
+Buy Now
+</div>
+
+</div>
+
+</div>
+
+<!-- TOOL PAGE -->
+<div id="tool" class="page">
+
+<h2>🧠 Mind Calm</h2>
+
+<div class="card">
+
+<div class="option" onclick="selectCase('low',this)">
+🙂 हल्का तनाव
+</div>
+
+<div class="option" onclick="selectCase('medium',this)">
+😐 ज्यादा सोच
+</div>
+
+<div class="option" onclick="selectCase('high',this)">
+😣 बहुत तनाव
+</div>
+
+<div class="btn" onclick="calculateCalm()">
+Calm Now
+</div>
 
 <div class="result" id="result"></div>
 
 </div>
 
+</div>
+
+<!-- NAV -->
+<div class="nav">
+<div onclick="openPage('home')">🏠 Home</div>
+<div onclick="openPage('premium')">💰 Premium</div>
+</div>
+
 <script>
 
+let selectedCase = "";
+
+/* Navigation */
+function openPage(id){
+
+// Premium lock
+if(id === "tool" && !localStorage.getItem("premium")){
+alert("यह Premium Tool है");
+openPage("premium");
+return;
+}
+
+document.querySelectorAll(".page").forEach(p=>{
+p.classList.remove("active");
+});
+
+document.getElementById(id).classList.add("active");
+}
+
+/* Premium Buy */
+function buyPremium(){
+localStorage.setItem("premium","yes");
+alert("Premium Activated ✅");
+openPage("tool");
+}
+
+/* Select Case */
+function selectCase(type,el){
+selectedCase = type;
+
+document.querySelectorAll(".option").forEach(o=>{
+o.classList.remove("active");
+});
+
+el.classList.add("active");
+}
+
+/* Calculator */
 function calculateCalm(){
 
-let stress = document.getElementById("stress").value;
-
-if(!stress){
-alert("Please enter stress level");
+if(!selectedCase){
+alert("स्थिति चुनें");
 return;
 }
 
 let output = "";
 
-if(stress <= 3){
-output = "आप पहले से ही शांत अवस्था में हैं। बस अपनी सांस पर ध्यान बनाए रखें।";
+if(selectedCase === "low"){
+output = "आप शांत हैं। बस 5 गहरी सांस लें और observe करें।";
 }
-else if(stress <= 6){
-output = "4 सेकंड सांस लें, 4 सेकंड रोकें, 4 सेकंड छोड़ें। इसे 5 बार करें। मन शांत होगा।";
+else if(selectedCase === "medium"){
+output = "4-4-4 breathing करें। 5 बार दोहराएं।";
 }
 else{
-output = "आंखें बंद करें। 6 सेकंड गहरी सांस लें, 6 सेकंड छोड़ें। 2 मिनट तक करें। आप तुरंत हल्का महसूस करेंगे।";
+output = "आंखें बंद करें। 6 सेकंड सांस लें-छोड़ें। 2 मिनट करें।";
 }
 
 document.getElementById("result").innerText = output;
