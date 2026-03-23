@@ -49,7 +49,7 @@ background:#f5d06f;
 color:#000;
 padding:12px;
 border-radius:25px;
-margin-top:15px;
+margin-top:10px;
 cursor:pointer;
 }
 
@@ -103,8 +103,8 @@ cursor:pointer;
 “जो स्वयं को जान लेता है उसे संसार पर विजय की आवश्यकता नहीं रहती।”
 </div>
 
-<div class="btn" onclick="openPage('tool')">
-आज क्या संकेत है?
+<div class="btn" onclick="openPage('tools')">
+🧠 10 Powerful Tools
 </div>
 
 </div>
@@ -132,34 +132,57 @@ Buy Now
 
 </div>
 
-<!-- TOOL PAGE -->
-<div id="tool" class="page">
+<!-- TOOLS PAGE -->
+<div id="tools" class="page">
+
+<h2>🧠 Premium Tools</h2>
+
+<div class="card">
+
+<div class="btn" onclick="openPage('tool1')">🧠 Mind Calm</div>
+<div class="btn" onclick="openPage('tool2')">💰 Wealth Energy</div>
+<div class="btn" onclick="openPage('tool3')">❤️ Relationship</div>
+<div class="btn" onclick="openPage('tool4')">🔮 Destiny</div>
+<div class="btn" onclick="openPage('tool5')">⚡ Energy</div>
+<div class="btn" onclick="openPage('tool6')">🧘 Meditation</div>
+<div class="btn" onclick="openPage('tool7')">🧠 Thought Convert</div>
+<div class="btn" onclick="openPage('tool8')">🎯 Focus</div>
+<div class="btn" onclick="openPage('tool9')">🔥 Karma</div>
+<div class="btn" onclick="openPage('tool10')">🌌 Timing</div>
+
+</div>
+
+</div>
+
+<!-- TOOL 1 (Mind Calm already working) -->
+<div id="tool1" class="page">
 
 <h2>🧠 Mind Calm</h2>
 
 <div class="card">
 
-<div class="option" onclick="selectCase('low',this)">
-🙂 हल्का तनाव
-</div>
+<div class="option" onclick="selectCase('low',this)">🙂 हल्का तनाव</div>
+<div class="option" onclick="selectCase('medium',this)">😐 ज्यादा सोच</div>
+<div class="option" onclick="selectCase('high',this)">😣 बहुत तनाव</div>
 
-<div class="option" onclick="selectCase('medium',this)">
-😐 ज्यादा सोच
-</div>
-
-<div class="option" onclick="selectCase('high',this)">
-😣 बहुत तनाव
-</div>
-
-<div class="btn" onclick="calculateCalm()">
-Calm Now
-</div>
+<div class="btn" onclick="calculateCalm()">Calm Now</div>
 
 <div class="result" id="result"></div>
 
 </div>
 
 </div>
+
+<!-- बाकी tools simple output -->
+<div id="tool2" class="page"><div class="card"><h3>💰 Wealth Energy</h3><div class="btn" onclick="showResult('आपकी wealth frequency बढ़ रही है 🔥')">Check</div><div class="result" id="r2"></div></div></div>
+<div id="tool3" class="page"><div class="card"><h3>❤️ Relationship</h3><div class="btn" onclick="showResult('आज संवाद ही समाधान है ❤️')">Check</div><div class="result" id="r3"></div></div></div>
+<div id="tool4" class="page"><div class="card"><h3>🔮 Destiny</h3><div class="btn" onclick="showResult('आज निर्णय लेने का सही समय है')">Check</div><div class="result" id="r4"></div></div></div>
+<div id="tool5" class="page"><div class="card"><h3>⚡ Energy</h3><div class="btn" onclick="showResult('आपकी ऊर्जा बढ़ रही है ⚡')">Check</div><div class="result" id="r5"></div></div></div>
+<div id="tool6" class="page"><div class="card"><h3>🧘 Meditation</h3><div class="btn" onclick="showResult('2 मिनट श्वास पर ध्यान दें')">Start</div><div class="result" id="r6"></div></div></div>
+<div id="tool7" class="page"><div class="card"><h3>🧠 Thought</h3><div class="btn" onclick="showResult('नकारात्मक विचार को छोड़ें, आप सक्षम हैं')">Convert</div><div class="result" id="r7"></div></div></div>
+<div id="tool8" class="page"><div class="card"><h3>🎯 Focus</h3><div class="btn" onclick="showResult('आज एक काम पर ध्यान दें')">Check</div><div class="result" id="r8"></div></div></div>
+<div id="tool9" class="page"><div class="card"><h3>🔥 Karma</h3><div class="btn" onclick="showResult('आपका कर्म सही दिशा में है')">Check</div><div class="result" id="r9"></div></div></div>
+<div id="tool10" class="page"><div class="card"><h3>🌌 Timing</h3><div class="btn" onclick="showResult('आज का समय अनुकूल है')">Check</div><div class="result" id="r10"></div></div></div>
 
 <!-- NAV -->
 <div class="nav">
@@ -174,9 +197,8 @@ let selectedCase = "";
 /* Navigation */
 function openPage(id){
 
-// Premium lock
-if(id === "tool" && !localStorage.getItem("premium")){
-alert("यह Premium Tool है");
+if((id.startsWith("tool") || id === "tools") && !localStorage.getItem("premium")){
+alert("यह Premium Feature है");
 openPage("premium");
 return;
 }
@@ -188,46 +210,35 @@ p.classList.remove("active");
 document.getElementById(id).classList.add("active");
 }
 
-/* Premium Buy */
+/* Buy */
 function buyPremium(){
 localStorage.setItem("premium","yes");
 alert("Premium Activated ✅");
-openPage("tool");
+openPage("tools");
 }
 
-/* Select Case */
+/* Mind Calm */
 function selectCase(type,el){
 selectedCase = type;
-
-document.querySelectorAll(".option").forEach(o=>{
-o.classList.remove("active");
-});
-
+document.querySelectorAll(".option").forEach(o=>o.classList.remove("active"));
 el.classList.add("active");
 }
 
-/* Calculator */
 function calculateCalm(){
+if(!selectedCase){alert("स्थिति चुनें"); return;}
 
-if(!selectedCase){
-alert("स्थिति चुनें");
-return;
-}
-
-let output = "";
-
-if(selectedCase === "low"){
-output = "आप शांत हैं। बस 5 गहरी सांस लें और observe करें।";
-}
-else if(selectedCase === "medium"){
-output = "4-4-4 breathing करें। 5 बार दोहराएं।";
-}
-else{
-output = "आंखें बंद करें। 6 सेकंड सांस लें-छोड़ें। 2 मिनट करें।";
-}
+let output = selectedCase === "low" ? 
+"आप शांत हैं। 5 गहरी सांस लें" :
+selectedCase === "medium" ?
+"4-4-4 breathing करें" :
+"6 सेकंड गहरी सांस लें-छोड़ें";
 
 document.getElementById("result").innerText = output;
+}
 
+/* Common result */
+function showResult(text){
+event.target.parentElement.querySelector(".result").innerText = text;
 }
 
 </script>
