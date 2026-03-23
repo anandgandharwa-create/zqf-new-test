@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Relationship Insight</title>
+
+<style>
+body{
+margin:0;
+font-family:sans-serif;
+background:linear-gradient(180deg,#000,#021414);
+color:#fff;
+text-align:center;
+}
+
+/* Container */
+.container{
+max-width:500px;
+margin:auto;
+padding:20px;
+}
+
+/* Card */
+.card{
+background:#0b1c1c;
+padding:20px;
+border-radius:15px;
+margin-top:20px;
+}
+
+/* Title */
+.title{
+font-size:22px;
+margin-bottom:10px;
+}
+
+/* Option */
+.option{
+background:#132c2c;
+padding:14px;
+border-radius:12px;
+margin-top:10px;
+cursor:pointer;
+}
+
+.option.active{
+border:2px solid #f5d06f;
+background:#1f4444;
+}
+
+/* Button */
+.btn{
+background:#f5d06f;
+color:#000;
+padding:14px;
+border-radius:25px;
+margin-top:15px;
+cursor:pointer;
+font-size:16px;
+}
+
+/* Result */
+.result{
+margin-top:20px;
+line-height:1.6;
+color:#d6e2ff;
+min-height:40px;
+}
+
+/* Back */
+.back{
+margin-top:20px;
+color:#aaa;
+cursor:pointer;
+font-size:14px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<div class="title">❤️ Relationship Insight</div>
+<div>अपनी स्थिति चुनें</div>
+
+<div class="card">
+
+<div class="option" onclick="selectCase('conflict',this)">
+💔 रिश्ते में तनाव / misunderstanding
+</div>
+
+<div class="option" onclick="selectCase('distance',this)">
+😶 दूरी बढ़ रही है / communication कम है
+</div>
+
+<div class="option" onclick="selectCase('good',this)">
+💖 सब अच्छा है लेकिन और बेहतर करना चाहते हैं
+</div>
+
+<div class="btn" onclick="calculate()">
+Check Insight
+</div>
+
+<div class="result" id="result"></div>
+
+</div>
+
+<div class="back" onclick="goBack()">⬅ Back</div>
+
+</div>
+
+<script>
+
+/* Premium Check */
+if(!localStorage.getItem("premium")){
+alert("यह Premium Tool है");
+window.location.href = "../premium.html";
+}
+
+let selected = "";
+
+/* Select */
+function selectCase(type,el){
+selected = type;
+
+document.querySelectorAll(".option").forEach(o=>{
+o.classList.remove("active");
+});
+
+el.classList.add("active");
+}
+
+/* Random Helper */
+function random(arr){
+return arr[Math.floor(Math.random()*arr.length)];
+}
+
+/* Calculate */
+function calculate(){
+
+if(!selected){
+alert("कृपया एक स्थिति चुनें");
+return;
+}
+
+let outputs = {
+
+conflict:[
+"आज ego छोड़ें, संवाद शुरू करें ❤️",
+"आप सही हैं, लेकिन समझना ज्यादा जरूरी है",
+"एक शांत बातचीत बहुत कुछ बदल सकती है"
+],
+
+distance:[
+"communication बढ़ाएं, connection लौटेगा",
+"छोटा message भी बड़ा असर करेगा 💬",
+"आज पहल करें, रिश्ता सुधरेगा"
+],
+
+good:[
+"gratitude दिखाएं, रिश्ता और गहरा होगा 💖",
+"आज appreciation करें",
+"जो अच्छा है, उसे celebrate करें"
+]
+
+};
+
+document.getElementById("result").innerText = random(outputs[selected]);
+
+}
+
+/* Back */
+function goBack(){
+window.location.href = "tools.html";
+}
+
+</script>
+
+</body>
+</html>
