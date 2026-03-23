@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Thought Converter</title>
+
+<style>
+body{
+margin:0;
+font-family:sans-serif;
+background:linear-gradient(180deg,#000,#021414);
+color:#fff;
+text-align:center;
+}
+
+/* Container */
+.container{
+max-width:500px;
+margin:auto;
+padding:20px;
+}
+
+/* Card */
+.card{
+background:#0b1c1c;
+padding:20px;
+border-radius:15px;
+margin-top:20px;
+}
+
+/* Title */
+.title{
+font-size:22px;
+margin-bottom:10px;
+}
+
+/* Input */
+textarea{
+width:100%;
+padding:12px;
+border-radius:10px;
+border:none;
+margin-top:10px;
+font-size:15px;
+resize:none;
+}
+
+/* Button */
+.btn{
+background:#f5d06f;
+color:#000;
+padding:14px;
+border-radius:25px;
+margin-top:15px;
+cursor:pointer;
+font-size:16px;
+}
+
+/* Result */
+.result{
+margin-top:20px;
+line-height:1.7;
+color:#d6e2ff;
+min-height:60px;
+}
+
+/* Back */
+.back{
+margin-top:20px;
+color:#aaa;
+cursor:pointer;
+font-size:14px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<div class="title">🧠 Thought Converter</div>
+<div>अपना नकारात्मक विचार लिखें</div>
+
+<div class="card">
+
+<textarea id="inputText" rows="3" placeholder="जैसे: मैं सफल नहीं हो पाऊंगा..."></textarea>
+
+<div class="btn" onclick="convert()">
+Convert Thought
+</div>
+
+<div class="result" id="result"></div>
+
+</div>
+
+<div class="back" onclick="goBack()">⬅ Back</div>
+
+</div>
+
+<script>
+
+/* Premium Check */
+if(!localStorage.getItem("premium")){
+alert("यह Premium Tool है");
+window.location.href = "../premium.html";
+}
+
+/* Random Helper */
+function random(arr){
+return arr[Math.floor(Math.random()*arr.length)];
+}
+
+/* Convert */
+function convert(){
+
+let input = document.getElementById("inputText").value;
+
+if(!input){
+alert("कृपया अपना विचार लिखें");
+return;
+}
+
+let outputs = [
+"आप सक्षम हैं, यह सिर्फ एक विचार है 🧠",
+"यह सोच आपकी सच्चाई नहीं है — आप इससे बड़े हैं",
+"हर चुनौती आपको मजबूत बना रही है",
+"आप कर सकते हैं, बस विश्वास रखें",
+"आपका मन बदल सकता है, और यही आपकी शक्ति है",
+"यह नकारात्मक सोच अस्थायी है, आपकी क्षमता स्थायी है"
+];
+
+document.getElementById("result").innerText = random(outputs);
+
+}
+
+/* Back */
+function goBack(){
+window.location.href = "tools.html";
+}
+
+</script>
+
+</body>
+</html>
