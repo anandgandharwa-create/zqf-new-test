@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Mind Calm</title>
+
+<style>
+body{
+margin:0;
+font-family:sans-serif;
+background:linear-gradient(180deg,#000,#021414);
+color:#fff;
+text-align:center;
+}
+
+/* Container */
+.container{
+max-width:500px;
+margin:auto;
+padding:20px;
+}
+
+/* Card */
+.card{
+background:#0b1c1c;
+padding:20px;
+border-radius:15px;
+margin-top:20px;
+}
+
+/* Title */
+.title{
+font-size:22px;
+margin-bottom:10px;
+}
+
+/* Options */
+.option{
+background:#132c2c;
+padding:14px;
+border-radius:12px;
+margin-top:10px;
+cursor:pointer;
+}
+
+.option.active{
+border:2px solid #f5d06f;
+background:#1f4444;
+}
+
+/* Button */
+.btn{
+background:#f5d06f;
+color:#000;
+padding:14px;
+border-radius:25px;
+margin-top:15px;
+cursor:pointer;
+font-size:16px;
+}
+
+/* Result */
+.result{
+margin-top:20px;
+line-height:1.6;
+color:#d6e2ff;
+min-height:40px;
+}
+
+/* Back */
+.back{
+margin-top:20px;
+color:#aaa;
+cursor:pointer;
+font-size:14px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<div class="title">🧠 Mind Calm</div>
+<div>अपनी स्थिति चुनें</div>
+
+<div class="card">
+
+<div class="option" onclick="selectCase('low',this)">
+🙂 हल्का तनाव / थोड़ी चिंता
+</div>
+
+<div class="option" onclick="selectCase('medium',this)">
+😐 दिमाग भारी / ज्यादा सोच
+</div>
+
+<div class="option" onclick="selectCase('high',this)">
+😣 बहुत ज्यादा तनाव / घबराहट
+</div>
+
+<div class="btn" onclick="calculate()">
+Calm Now
+</div>
+
+<div class="result" id="result"></div>
+
+</div>
+
+<div class="back" onclick="goBack()">⬅ Back</div>
+
+</div>
+
+<script>
+
+/* Premium Check */
+if(!localStorage.getItem("premium")){
+alert("यह Premium Tool है");
+window.location.href = "../premium.html";
+}
+
+let selected = "";
+
+/* Select */
+function selectCase(type,el){
+selected = type;
+
+document.querySelectorAll(".option").forEach(o=>{
+o.classList.remove("active");
+});
+
+el.classList.add("active");
+}
+
+/* Random Helper */
+function random(arr){
+return arr[Math.floor(Math.random()*arr.length)];
+}
+
+/* Calculate */
+function calculate(){
+
+if(!selected){
+alert("कृपया एक स्थिति चुनें");
+return;
+}
+
+let outputs = {
+
+low:[
+"आप पहले से शांत हैं। बस 5 गहरी सांस लें और observe करें",
+"आपकी अवस्था संतुलित है, इसे बनाए रखें",
+"धीरे-धीरे सांस लें, आप control में हैं"
+],
+
+medium:[
+"4-4-4 breathing करें। 5 बार दोहराएं",
+"अपने विचारों को observe करें, react न करें",
+"2 मिनट शांत बैठें, clarity आएगी"
+],
+
+high:[
+"आंखें बंद करें। 6 सेकंड गहरी सांस लें-छोड़ें",
+"आप सुरक्षित हैं, धीरे-धीरे सांस लें",
+"2 मिनट तक सिर्फ सांस पर ध्यान दें"
+]
+
+};
+
+document.getElementById("result").innerText = random(outputs[selected]);
+
+}
+
+/* Back */
+function goBack(){
+window.location.href = "tools.html";
+}
+
+</script>
+
+</body>
+</html>
