@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Premium Tools</title>
+
+<style>
+body{
+margin:0;
+font-family:sans-serif;
+background:linear-gradient(180deg,#000,#021414);
+color:#fff;
+text-align:center;
+}
+
+/* Container */
+.container{
+max-width:500px;
+margin:auto;
+padding:20px;
+}
+
+/* Title */
+.title{
+font-size:22px;
+margin-bottom:10px;
+}
+
+/* Card */
+.card{
+background:#0b1c1c;
+padding:20px;
+border-radius:15px;
+margin-top:20px;
+}
+
+/* Tool Button */
+.tool{
+background:#132c2c;
+padding:14px;
+border-radius:12px;
+margin-top:10px;
+cursor:pointer;
+font-size:15px;
+}
+
+.tool:hover{
+background:#1f4444;
+}
+
+/* Back */
+.back{
+margin-top:20px;
+font-size:14px;
+color:#aaa;
+cursor:pointer;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<div class="title">🧠 Premium Tools</div>
+<div>10 Powerful Transformation Tools</div>
+
+<div class="card">
+
+<div class="tool" onclick="openTool('tool1.html')">🧠 Mind Calm</div>
+<div class="tool" onclick="openTool('tool2.html')">💰 Wealth Energy</div>
+<div class="tool" onclick="openTool('tool3.html')">❤️ Relationship</div>
+<div class="tool" onclick="openTool('tool4.html')">🔮 Destiny Direction</div>
+<div class="tool" onclick="openTool('tool5.html')">⚡ Energy Scanner</div>
+<div class="tool" onclick="openTool('tool6.html')">🧘 Meditation Guide</div>
+<div class="tool" onclick="openTool('tool7.html')">🧠 Thought Converter</div>
+<div class="tool" onclick="openTool('tool8.html')">🎯 Focus Booster</div>
+<div class="tool" onclick="openTool('tool9.html')">🔥 Karma Insight</div>
+<div class="tool" onclick="openTool('tool10.html')">🌌 Divine Timing</div>
+
+</div>
+
+<div class="back" onclick="goBack()">⬅ Back to Home</div>
+
+</div>
+
+<script>
+
+/* Premium Check */
+if(!localStorage.getItem("premium")){
+alert("यह Premium Feature है");
+window.location.href = "../premium.html";
+}
+
+/* Open Tool */
+function openTool(page){
+window.location.href = page;
+}
+
+/* Back */
+function goBack(){
+window.location.href = "../index.html";
+}
+
+</script>
+
+</body>
+</html>
