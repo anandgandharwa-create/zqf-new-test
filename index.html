@@ -70,8 +70,8 @@ color:#d6e2ff;
 <div class="card">
 
 <!-- Premium -->
-<div class="premiumBox" onclick="openPremium()">
-🔒 Unlock Premium – ₹199 (10 Tools)
+<div class="premiumBox" onclick="goPremium()" id="premiumBtn">
+Loading...
 </div>
 
 <!-- Quote -->
@@ -108,7 +108,15 @@ return;
 
 window.location.href = "premium/tools.html";
 }
+<script>
+let btn = document.getElementById("premiumBtn");
 
+if(localStorage.getItem("premium") === "yes"){
+    btn.innerHTML = "✨ Premium Activated – Open Tools";
+}
+else{
+    btn.innerHTML = "🔒 Unlock Premium – ₹199 (10 Tools)";
+}
 </script>
 
 </body>
