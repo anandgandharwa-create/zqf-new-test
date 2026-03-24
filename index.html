@@ -4,119 +4,156 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Zero Quantum Frequency</title>
+<title>Premium</title>
 
 <style>
 body{
 margin:0;
-font-family:sans-serif;
-background:linear-gradient(180deg,#000,#021414);
+font-family:'Segoe UI',sans-serif;
+background:#071826;
 color:#fff;
 text-align:center;
 }
 
 /* Container */
 .container{
-max-width:500px;
+max-width:420px;
 margin:auto;
 padding:20px;
 }
 
+/* Title */
+.title{
+font-size:22px;
+margin-bottom:5px;
+}
+
+.subtitle{
+font-size:14px;
+color:#a3bcd9;
+margin-bottom:20px;
+}
+
 /* Card */
 .card{
-background:#0b1c1c;
+background:#0f2233;
+border-radius:18px;
 padding:20px;
-border-radius:15px;
-margin-top:20px;
-}
-
-/* Premium Bar */
-.premiumBox{
-margin:15px 0;
-padding:12px;
-border-radius:12px;
-background:linear-gradient(135deg,#f5d06f,#caa84c);
-color:#000;
-font-weight:bold;
-cursor:pointer;
-}
-
-/* Button */
-.btn{
-background:#f5d06f;
-color:#000;
-padding:14px;
-border-radius:25px;
 margin-top:15px;
+box-shadow:0 6px 20px rgba(0,0,0,0.5);
 cursor:pointer;
-font-size:16px;
+transition:0.25s;
 }
 
-/* Quote */
-.quote{
+.card:hover{
+transform:translateY(-3px);
+}
+
+/* Icon */
+.icon{
+font-size:28px;
+margin-bottom:10px;
+}
+
+/* Heading */
+.heading{
+font-size:18px;
+margin-bottom:6px;
+}
+
+/* Text */
+.text{
+font-size:14px;
+color:#b8d4f0;
+line-height:1.5;
+}
+
+/* CTA */
+.cta{
 margin-top:10px;
-line-height:1.6;
-color:#d6e2ff;
+font-size:13px;
+color:#ffd700;
+}
+
+/* Back */
+.back{
+margin-top:25px;
+padding:12px;
+background:#333;
+border-radius:10px;
+cursor:pointer;
 }
 </style>
+
 </head>
 
 <body>
 
 <div class="container">
 
-<h2>Zero Quantum Frequency™</h2>
+<div class="title">💎 Premium Access</div>
+<div class="subtitle">Inner Transformation System</div>
 
-<div class="card">
-
-<!-- Premium -->
-<div class="premiumBox" onclick="goPremium()" id="premiumBtn">
-Loading...
+<!-- 🔮 Ask Krishna -->
+<div class="card" onclick="openKrishna()">
+<div class="icon">🔮</div>
+<div class="heading">Ask Krishna</div>
+<div class="text">
+अपने प्रश्न का उत्तर भीतर से प्राप्त करें
+</div>
+<div class="cta">Tap to Receive Guidance</div>
 </div>
 
-<!-- Quote -->
-<div class="quote">
-“जो स्वयं को जान लेता है उसे संसार पर विजय की आवश्यकता नहीं रहती।”
+<!-- 🧘 Meditation -->
+<div class="card" onclick="openMeditation()">
+<div class="icon">🧘</div>
+<div class="heading">Daily Meditation</div>
+<div class="text">
+मन को शांत करें और ऊर्जा को संतुलित करें
+</div>
+<div class="cta">Play Now</div>
 </div>
 
-<!-- Tools Button -->
-<div class="btn" onclick="openTools()">
-🧠 10 Powerful Tools
+<!-- 🎥 Course -->
+<div class="card" onclick="openCourse()">
+<div class="icon">🎥</div>
+<div class="heading">Transformation Course</div>
+<div class="text">
+वीडियो कोर्स + Gratitude अभ्यास
 </div>
-<div class="btn" onclick="localStorage.setItem('premium','yes')">
-Activate Premium (Test)
+<div class="cta">Start Your Journey</div>
 </div>
-</div>
+
+<!-- Back -->
+<div class="back" onclick="goBack()">← Back</div>
 
 </div>
 
 <script>
 
-/* Open Premium Page */
-function openPremium(){
-window.location.href = "premium.html";
+/* 🔒 Premium Check */
+if(localStorage.getItem("premium") !== "yes"){
+    alert("यह Premium Feature है");
+    window.location.href = "../pages/premium.html";
 }
 
-/* Open Tools Folder */
-function openTools(){
-
-if(!localStorage.getItem("premium")){
-alert("यह Premium Feature है");
-window.location.href = "premium.html";
-return;
+/* Navigation */
+function openKrishna(){
+    window.location.href = "../pages/krishna-api.html";
 }
 
-window.location.href = "premium/tools.html";
+function openMeditation(){
+    window.location.href = "../pages/meditation.html";
 }
-<script>
-let btn = document.getElementById("premiumBtn");
 
-if(localStorage.getItem("premium") === "yes"){
-    btn.innerHTML = "✨ Premium Activated – Open Tools";
+function openCourse(){
+    window.location.href = "../pages/course.html";
 }
-else{
-    btn.innerHTML = "🔒 Unlock Premium – ₹199 (10 Tools)";
+
+function goBack(){
+    window.location.href = "../index.html";
 }
+
 </script>
 
 </body>
