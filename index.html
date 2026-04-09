@@ -9,7 +9,7 @@
 body {
     margin: 0;
     font-family: Arial;
-    background: linear-gradient(135deg, #0f9b0f, #00c9a7, #a8ff78);
+    background: linear-gradient(135deg, #002b1f, #004d3a, #007a5a);
     color: white;
     text-align: center;
 }
@@ -19,12 +19,12 @@ body {
 }
 
 .card {
-    background: rgba(255,255,255,0.1);
+    background: rgba(0, 0, 0, 0.35);
     padding: 20px;
     border-radius: 15px;
     margin-top: 20px;
+    backdrop-filter: blur(10px);
 }
-
 button {
     padding: 12px 20px;
     margin: 10px;
@@ -32,8 +32,8 @@ button {
     border-radius: 10px;
     font-size: 16px;
     cursor: pointer;
-    background: #ffffff;
-    color: #0f9b0f;
+    background: #00ffcc;
+    color: #002b1f;
     font-weight: bold;
 }
 
@@ -65,6 +65,9 @@ button {
 #resultBox {
     margin-top: 15px;
     font-size: 16px;
+    background: rgba(0,255,200,0.1);
+    padding: 10px;
+    border-radius: 10px;
 }
 
 .progress {
