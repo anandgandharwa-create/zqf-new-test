@@ -9,17 +9,13 @@
 body {
     margin: 0;
     font-family: Arial;
-    background: linear-gradient(135deg, #1a2a6c, #b21f1f, #fdbb2d);
+    background: linear-gradient(135deg, #0f9b0f, #00c9a7, #a8ff78);
     color: white;
     text-align: center;
 }
 
 .container {
     padding: 20px;
-}
-
-h1 {
-    font-size: 28px;
 }
 
 .card {
@@ -36,13 +32,9 @@ button {
     border-radius: 10px;
     font-size: 16px;
     cursor: pointer;
-    background: #00ffcc;
-    color: black;
+    background: #ffffff;
+    color: #0f9b0f;
     font-weight: bold;
-}
-
-button:hover {
-    background: #00ccaa;
 }
 
 .option {
@@ -50,9 +42,29 @@ button:hover {
     background: white;
     color: black;
     margin: 10px;
-    padding: 10px;
+    padding: 12px;
     border-radius: 10px;
     cursor: pointer;
+    transition: 0.3s;
+}
+
+.option:hover {
+    background: #d4ffd4;
+}
+
+.correct {
+    background: #4caf50 !important;
+    color: white;
+}
+
+.wrong {
+    background: #ff4d4d !important;
+    color: white;
+}
+
+#resultBox {
+    margin-top: 15px;
+    font-size: 16px;
 }
 
 .progress {
@@ -76,6 +88,10 @@ button:hover {
 <div id="gameScreen" class="card" style="display:none;">
     <div id="question"></div>
     <div id="options"></div>
+
+    <div id="resultBox"></div>
+    <button id="nextBtn" onclick="nextQuestion()" style="display:none;">Next</button>
+
     <div class="progress" id="progress"></div>
 </div>
 
@@ -124,6 +140,7 @@ const questions = [
 
 let current = 0;
 let score = 0;
+let answered = false;
 
 function startGame() {
     document.getElementById("startScreen").style.display = "none";
@@ -132,31 +149,52 @@ function startGame() {
 }
 
 function showQuestion() {
+    answered = false;
+    document.getElementById("resultBox").innerHTML = "";
+    document.getElementById("nextBtn").style.display = "none";
+
     let q = questions[current];
     document.getElementById("question").innerHTML = "<h3>" + q.q + "</h3>";
 
     let optionsHtml = "";
     q.options.forEach(opt => {
-        optionsHtml += `<div class="option" onclick="checkAnswer('${opt}')">${opt}</div>`;
+        optionsHtml += `<div class="option" onclick="checkAnswer(this, '${opt}')">${opt}</div>`;
     });
 
     document.getElementById("options").innerHTML = optionsHtml;
     document.getElementById("progress").innerText = `Question ${current+1}/5`;
 }
 
-function checkAnswer(selected) {
+function checkAnswer(el, selected) {
+    if(answered) return;
+    answered = true;
+
     let correct = questions[current].answer;
     let gyan = questions[current].gyan;
 
+    let options = document.querySelectorAll(".option");
+
+    options.forEach(opt => {
+        if(opt.innerText === correct){
+            opt.classList.add("correct");
+        }
+        if(opt.innerText === selected && selected !== correct){
+            opt.classList.add("wrong");
+        }
+    });
+
     if(selected === correct){
         score++;
-        alert("✔ सही!\n" + gyan);
+        document.getElementById("resultBox").innerHTML = "✔ सही!<br>" + gyan;
     } else {
-        alert("❌ गलत!\n" + gyan);
+        document.getElementById("resultBox").innerHTML = "❌ गलत!<br>" + gyan;
     }
 
-    current++;
+    document.getElementById("nextBtn").style.display = "inline-block";
+}
 
+function nextQuestion() {
+    current++;
     if(current < questions.length){
         showQuestion();
     } else {
