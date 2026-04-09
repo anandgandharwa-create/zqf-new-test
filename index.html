@@ -3,244 +3,186 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Cosmic Gyan Game</title>
+<title>Gyan ka Game</title>
 
 <style>
-
-/* 🌌 COSMIC BACKGROUND */
-body{
-margin:0;
-font-family:system-ui;
-color:#fff;
-text-align:center;
-overflow:hidden;
-
-background: radial-gradient(circle at 30% 30%, #0f2a3a, #020b14);
+body {
+    margin: 0;
+    font-family: Arial;
+    background: linear-gradient(135deg, #1a2a6c, #b21f1f, #fdbb2d);
+    color: white;
+    text-align: center;
 }
 
-/* ✨ STARS */
-body::before{
-content:"";
-position:fixed;
-width:100%;
-height:100%;
-background:
-radial-gradient(white 1px, transparent 1px),
-radial-gradient(white 1px, transparent 1px);
-background-size:40px 40px, 80px 80px;
-opacity:0.15;
-animation:starsMove 60s linear infinite;
+.container {
+    padding: 20px;
 }
 
-@keyframes starsMove{
-from{transform:translateY(0);}
-to{transform:translateY(-200px);}
+h1 {
+    font-size: 28px;
 }
 
-/* 🔮 TOP BAR */
-.gameTop{
-display:flex;
-justify-content:space-between;
-padding:14px 20px;
-background:rgba(0,0,0,0.4);
-backdrop-filter:blur(10px);
-border-bottom:1px solid rgba(255,255,255,0.1);
-font-weight:600;
+.card {
+    background: rgba(255,255,255,0.1);
+    padding: 20px;
+    border-radius: 15px;
+    margin-top: 20px;
 }
 
-/* 💎 QUESTION CARD */
-.questionCard{
-margin:25px 20px;
-padding:24px;
-border-radius:18px;
-
-background:rgba(255,255,255,0.05);
-backdrop-filter:blur(12px);
-
-box-shadow:
-0 0 20px rgba(0,150,255,0.3),
-inset 0 0 10px rgba(255,255,255,0.1);
-
-font-size:18px;
-line-height:1.6;
+button {
+    padding: 12px 20px;
+    margin: 10px;
+    border: none;
+    border-radius: 10px;
+    font-size: 16px;
+    cursor: pointer;
+    background: #00ffcc;
+    color: black;
+    font-weight: bold;
 }
 
-/* ⚡ OPTIONS */
-.optionBtn{
-margin:12px 20px;
-padding:16px;
-border-radius:14px;
-
-background:linear-gradient(145deg,#102a3a,#071b26);
-
-box-shadow:0 0 10px rgba(0,150,255,0.2);
-
-cursor:pointer;
-transition:0.3s;
+button:hover {
+    background: #00ccaa;
 }
 
-.optionBtn:hover{
-transform:scale(1.05);
-box-shadow:0 0 20px rgba(0,200,255,0.6);
+.option {
+    display: block;
+    background: white;
+    color: black;
+    margin: 10px;
+    padding: 10px;
+    border-radius: 10px;
+    cursor: pointer;
 }
 
-/* ✅ CORRECT */
-.correct{
-background:linear-gradient(145deg,#0f5c3a,#05291a) !important;
-box-shadow:0 0 20px #00ff9c;
+.progress {
+    margin-top: 10px;
+    font-size: 14px;
 }
-
-/* ❌ WRONG */
-.wrong{
-background:linear-gradient(145deg,#5c0f1f,#2a050c) !important;
-box-shadow:0 0 20px #ff4d6d;
-}
-
-/* 🌟 RESULT */
-#result{
-margin-top:12px;
-color:#ffd700;
-font-size:16px;
-}
-
-/* 🚀 BUTTON */
-.nextBtn{
-margin:20px;
-padding:14px;
-border-radius:14px;
-
-background:linear-gradient(45deg,#ffd700,#ffb300);
-color:#000;
-font-weight:600;
-
-cursor:pointer;
-transition:0.3s;
-}
-
-.nextBtn:hover{
-transform:scale(1.08);
-box-shadow:0 0 25px rgba(255,215,0,0.8);
-}
-
-/* ⏳ TIMER PULSE */
-#timer{
-animation:pulse 1s infinite;
-}
-
-@keyframes pulse{
-0%{opacity:1;}
-50%{opacity:0.5;}
-100%{opacity:1;}
-}
-
 </style>
-</head>
 
+</head>
 <body>
 
-<div class="gameTop">
-  <div id="score">🔥 0</div>
-  <div id="timer">⏳ 10</div>
-  <div id="streak">⚡ 0</div>
+<div class="container">
+
+<h1>🎮 Gyan ka Game</h1>
+
+<div id="startScreen" class="card">
+    <p>आज के 5 प्रश्न खेलें और अपना ज्ञान बढ़ाएं</p>
+    <button onclick="startGame()">Start Game</button>
 </div>
 
-<div class="questionCard" id="question"></div>
+<div id="gameScreen" class="card" style="display:none;">
+    <div id="question"></div>
+    <div id="options"></div>
+    <div class="progress" id="progress"></div>
+</div>
 
-<div id="options"></div>
+<div id="resultScreen" class="card" style="display:none;">
+    <h2>आपका स्कोर: <span id="score"></span>/5</h2>
+    <p id="finalMsg"></p>
+    <button onclick="restartGame()">फिर से खेलें</button>
+</div>
 
-<div id="result"></div>
-
-<div class="nextBtn" onclick="nextQ()">अगला प्रश्न →</div>
+</div>
 
 <script>
 
-let score=0, streak=0, current=0, time=10, timer;
-
-const questions=[
+const questions = [
 {
-q:"आप कौन हैं?",
-options:["शरीर","मन","साक्षी"],
-answer:2,
-insight:"आप साक्षी हैं — देखने वाले"
+    q: "मन अशांत क्यों होता है?",
+    options: ["अपेक्षा", "शांति", "ज्ञान", "धैर्य"],
+    answer: "अपेक्षा",
+    gyan: "जहाँ अपेक्षा अधिक, वहाँ अशांति निश्चित।"
 },
 {
-q:"शांति कब मिलती है?",
-options:["जब सब सही हो","जब मन शांत हो","जब भागो"],
-answer:1,
-insight:"मन शांत = शांति"
+    q: "सच्ची शक्ति क्या है?",
+    options: ["पैसा", "गुस्सा", "संयम", "शरीर"],
+    answer: "संयम",
+    gyan: "जो खुद को जीत ले, वही सबसे शक्तिशाली।"
 },
 {
-q:"विचार क्या हैं?",
-options:["आप हैं","आते-जाते हैं","स्थायी हैं"],
-answer:1,
-insight:"विचार आते-जाते हैं"
+    q: "खुशी कहाँ मिलती है?",
+    options: ["बाहर", "दूसरों में", "अपने भीतर", "पैसे में"],
+    answer: "अपने भीतर",
+    gyan: "खुशी बाहर नहीं, अनुभव के भीतर है।"
+},
+{
+    q: "जीवन का उद्देश्य क्या है?",
+    options: ["कमाना", "सीखना", "जागना", "सोना"],
+    answer: "जागना",
+    gyan: "जीवन का असली लक्ष्य चेतना का जागरण है।"
+},
+{
+    q: "क्रोध को कैसे जीतें?",
+    options: ["चिल्लाकर", "शांत रहकर", "भागकर", "दबाकर"],
+    answer: "शांत रहकर",
+    gyan: "शांति ही क्रोध का अंत है।"
 }
 ];
 
-function loadQ(){
-clearInterval(timer);
-time=10;
-startTimer();
+let current = 0;
+let score = 0;
 
-const q=questions[current];
-document.getElementById("question").innerText=q.q;
-
-let html="";
-q.options.forEach((opt,i)=>{
-html+=`<div class="optionBtn" onclick="check(${i},this)">${opt}</div>`;
-});
-
-document.getElementById("options").innerHTML=html;
-document.getElementById("result").innerText="";
+function startGame() {
+    document.getElementById("startScreen").style.display = "none";
+    document.getElementById("gameScreen").style.display = "block";
+    showQuestion();
 }
 
-function check(i,el){
-const q=questions[current];
-const all=document.querySelectorAll(".optionBtn");
+function showQuestion() {
+    let q = questions[current];
+    document.getElementById("question").innerHTML = "<h3>" + q.q + "</h3>";
 
-all.forEach(btn=>btn.style.pointerEvents="none");
+    let optionsHtml = "";
+    q.options.forEach(opt => {
+        optionsHtml += `<div class="option" onclick="checkAnswer('${opt}')">${opt}</div>`;
+    });
 
-if(i===q.answer){
-el.classList.add("correct");
-score+=10;
-streak++;
-document.getElementById("result").innerText="✨ "+q.insight;
-}else{
-el.classList.add("wrong");
-all[q.answer].classList.add("correct");
-streak=0;
-document.getElementById("result").innerText="🧠 "+q.insight;
+    document.getElementById("options").innerHTML = optionsHtml;
+    document.getElementById("progress").innerText = `Question ${current+1}/5`;
 }
 
-update();
+function checkAnswer(selected) {
+    let correct = questions[current].answer;
+    let gyan = questions[current].gyan;
+
+    if(selected === correct){
+        score++;
+        alert("✔ सही!\n" + gyan);
+    } else {
+        alert("❌ गलत!\n" + gyan);
+    }
+
+    current++;
+
+    if(current < questions.length){
+        showQuestion();
+    } else {
+        showResult();
+    }
 }
 
-function nextQ(){
-current++;
-if(current>=questions.length) current=0;
-loadQ();
+function showResult() {
+    document.getElementById("gameScreen").style.display = "none";
+    document.getElementById("resultScreen").style.display = "block";
+    document.getElementById("score").innerText = score;
+
+    let msg = "";
+    if(score == 5) msg = "🔥 आप जागरूक हैं!";
+    else if(score >=3) msg = "✨ आप सही दिशा में हैं";
+    else msg = "🌱 सीख की शुरुआत हुई है";
+
+    document.getElementById("finalMsg").innerText = msg;
 }
 
-function update(){
-document.getElementById("score").innerText="🔥 "+score;
-document.getElementById("streak").innerText="⚡ "+streak;
+function restartGame(){
+    current = 0;
+    score = 0;
+    document.getElementById("resultScreen").style.display = "none";
+    document.getElementById("startScreen").style.display = "block";
 }
-
-function startTimer(){
-timer=setInterval(()=>{
-time--;
-document.getElementById("timer").innerText="⏳ "+time;
-
-if(time===0){
-clearInterval(timer);
-streak=0;
-update();
-alert("⏳ समय समाप्त");
-}
-},1000);
-}
-
-loadQ();
 
 </script>
 
