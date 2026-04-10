@@ -2,13 +2,13 @@
 <html lang="hi">
 <head>
 <meta charset="UTF-8">
-<title>Gyaan Game</title>
+<title>Divine Prediction Game</title>
 
 <style>
 body {
     margin: 0;
     font-family: Arial;
-    background: linear-gradient(135deg, #001a12, #003d2b, #00664d);
+    background: radial-gradient(circle, #000428, #004e92);
     color: white;
     text-align: center;
 }
@@ -30,7 +30,7 @@ h1 {
 
 .option {
     display: block;
-    background: #00a86b;
+    background: #1e90ff;
     margin: 10px;
     padding: 12px;
     border-radius: 10px;
@@ -38,7 +38,7 @@ h1 {
 }
 
 .option:hover {
-    background: #00cc88;
+    background: #63b3ff;
 }
 
 .result {
@@ -62,15 +62,12 @@ h1 {
 <body>
 
 <div class="container">
-    <h1>🧠 Gyaan Game</h1>
+    <h1>🔮 Divine Prediction</h1>
 
     <div class="question-box">
-        <h2 id="question">Loading...</h2>
-
+        <h2 id="question"></h2>
         <div id="options"></div>
-
         <div class="result" id="result"></div>
-
         <button class="next-btn" onclick="nextQuestion()">Next</button>
     </div>
 </div>
@@ -78,64 +75,68 @@ h1 {
 <script>
 let questions = [
     {
-        question: "जीवन में सबसे बड़ा डर क्या है?",
-        options: ["असफलता", "लोग क्या कहेंगे", "अकेलापन"],
-        answers: [
-            "डर केवल मन की कल्पना है, सत्य नहीं।",
-            "लोगों की सोच बदलती रहती है, खुद पर ध्यान दो।",
-            "अकेलापन आत्मा से जुड़ने का अवसर है।"
-        ]
+        question: "आप अभी जीवन में क्या खोज रहे हैं?",
+        options: ["शांति", "सफलता", "प्रेम"]
     },
     {
-        question: "सच्ची खुशी कहाँ है?",
-        options: ["पैसे में", "रिश्तों में", "अपने अंदर"],
-        answers: [
-            "पैसा सुविधा देता है, खुशी नहीं।",
-            "रिश्ते महत्वपूर्ण हैं, पर असली खुशी भीतर है।",
-            "सही! असली आनंद भीतर ही है।"
-        ]
+        question: "आपको सबसे ज्यादा क्या रोकता है?",
+        options: ["डर", "आलस", "लोगों की सोच"]
     },
     {
-        question: "मन को शांत कैसे करें?",
-        options: ["भाग कर", "सोच बदलकर", "ध्यान से"],
-        answers: [
-            "भागने से मन और तेज भागेगा।",
-            "सोच बदलना पहला कदम है।",
-            "ध्यान मन को स्थिर करता है।"
-        ]
+        question: "आपका दिल अभी क्या चाहता है?",
+        options: ["आराम", "बदलाव", "कुछ बड़ा"]
     }
 ];
 
+let answersChosen = [];
 let current = 0;
 
 function loadQuestion() {
     document.getElementById("result").innerHTML = "";
-    let q = questions[current];
 
+    let q = questions[current];
     document.getElementById("question").innerText = q.question;
 
     let optionsHTML = "";
-    q.options.forEach((opt, index) => {
-        optionsHTML += `<div class="option" onclick="selectOption(${index})">${opt}</div>`;
+    q.options.forEach((opt) => {
+        optionsHTML += `<div class="option" onclick="selectOption('${opt}')">${opt}</div>`;
     });
 
     document.getElementById("options").innerHTML = optionsHTML;
 }
 
-function selectOption(index) {
-    let answer = questions[current].answers[index];
-    document.getElementById("result").innerText = answer;
+function selectOption(option) {
+    answersChosen.push(option);
+    document.getElementById("result").innerText = "✔ चयन किया गया";
 }
 
 function nextQuestion() {
     current++;
+
     if (current >= questions.length) {
-        document.getElementById("question").innerText = "🎉 आपने आज का ज्ञान पूरा कर लिया!";
-        document.getElementById("options").innerHTML = "";
-        document.getElementById("result").innerText = "आप अपने जीवन को समझने की दिशा में बढ़ रहे हैं।";
+        showPrediction();
         return;
     }
+
     loadQuestion();
+}
+
+function showPrediction() {
+    let message = "";
+
+    if (answersChosen.includes("डर")) {
+        message = "🔮 ब्रह्मांड का संकेत: आपका डर ही आपकी सबसे बड़ी शक्ति बनने वाला है। उसे स्वीकार करें।";
+    } 
+    else if (answersChosen.includes("सफलता")) {
+        message = "🔮 संकेत: आने वाले समय में आपके लिए बड़ा अवसर तैयार है। तैयार रहिए।";
+    } 
+    else {
+        message = "🔮 संकेत: आपका जीवन एक नए मोड़ पर है। खुद पर भरोसा रखें।";
+    }
+
+    document.getElementById("question").innerText = "✨ आपका Divine Message";
+    document.getElementById("options").innerHTML = "";
+    document.getElementById("result").innerText = message;
 }
 
 loadQuestion();
