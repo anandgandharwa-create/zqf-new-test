@@ -40,6 +40,11 @@ h1 {
 .option:hover {
     background: #63b3ff;
 }
+    .option.selected {
+    background: gold;
+    color: black;
+    font-weight: bold;
+}
 
 .result {
     margin-top: 20px;
@@ -99,15 +104,23 @@ function loadQuestion() {
 
     let optionsHTML = "";
     q.options.forEach((opt) => {
-        optionsHTML += `<div class="option" onclick="selectOption('${opt}')">${opt}</div>`;
+       optionsHTML += `<div class="option" onclick="selectOption('${opt}', this)">${opt}</div>`;
     });
 
     document.getElementById("options").innerHTML = optionsHTML;
 }
 
-function selectOption(option) {
+function selectOption(option, element) {
+
+    // पहले सब options से selected हटाओ
+    let allOptions = document.querySelectorAll(".option");
+    allOptions.forEach(opt => opt.classList.remove("selected"));
+
+    // जिस पर क्लिक हुआ उसे highlight करो
+    element.classList.add("selected");
+
+    // answer save करो
     answersChosen.push(option);
-    document.getElementById("result").innerText = "✔ चयन किया गया";
 }
 
 function nextQuestion() {
