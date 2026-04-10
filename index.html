@@ -2,6 +2,7 @@
 <html lang="hi">
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Divine Prediction Game</title>
 
 <style>
@@ -12,54 +13,73 @@ body {
     color: white;
     text-align: center;
 }
-
 .container {
-    padding: 20px;
+    padding: 15px;
+    max-width: 500px;
+    margin: auto;
 }
 
+/* Heading */
 h1 {
     color: gold;
+    font-size: 22px;
+}
+    .question-box {
+    background: rgba(255,255,255,0.1);
+    padding: 15px;
+    border-radius: 15px;
+    margin-top: 15px;
+}
+    /* 📱 Extra small screens */
+@media (max-width: 400px) {
+    h1 {
+        font-size: 18px;
+    }
+    #question {
+        font-size: 16px;
+    }
+    .option {
+        font-size: 14px;
+        padding: 12px;
+    }
 }
 
-.question-box {
-    background: rgba(255,255,255,0.1);
-    padding: 20px;
-    border-radius: 15px;
-    margin-top: 20px;
+/* Question text */
+#question {
+    font-size: 18px;
+    line-height: 1.4;
 }
 
 .option {
     display: block;
     background: #1e90ff;
-    margin: 10px;
-    padding: 12px;
-    border-radius: 10px;
+    margin: 8px 0;
+    padding: 14px;
+    border-radius: 12px;
     cursor: pointer;
+    font-size: 16px;
 }
 
-.option:hover {
-    background: #63b3ff;
-}
-    .option.selected {
+/* Selected */
+.option.selected {
     background: gold;
     color: black;
     font-weight: bold;
 }
 
-.result {
-    margin-top: 20px;
-    font-size: 18px;
-    color: gold;
+.next-btn, #restartBtn {
+    width: 100%;
+    padding: 14px;
+    margin-top: 15px;
+    border-radius: 12px;
+    font-size: 16px;
 }
 
-.next-btn {
-    margin-top: 20px;
-    padding: 10px 20px;
-    background: gold;
-    color: black;
-    border: none;
-    border-radius: 10px;
-    cursor: pointer;
+/* Result text */
+.result {
+    margin-top: 15px;
+    font-size: 16px;
+    color: gold;
 }
    #restartBtn {
     margin-top: 30px;
