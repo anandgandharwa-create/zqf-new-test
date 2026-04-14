@@ -44,6 +44,16 @@ button {
     border: none;
     font-weight: bold;
 }
+
+/* RESULT BOX */
+#resultBox {
+    margin-top: 25px;
+    padding: 15px;
+    border-radius: 12px;
+    background: rgba(0, 255, 150, 0.1);
+    border: 1px solid rgba(0,255,150,0.5);
+    display: none;
+}
 </style>
 </head>
 
@@ -52,50 +62,92 @@ button {
 <div class="card">
 <h2>🌿 आज का आत्म-निरीक्षण</h2>
 
-<p>🙊 क्या मैंने आज निंदा की?</p>
-<select>
+<select class="q">
+<option value="">🙊 क्या मैंने आज निंदा की?</option>
 <option>नहीं</option>
 <option>थोड़ी</option>
 <option>काफी</option>
 <option>बहुत ज्यादा</option>
 </select>
 
-<p>😡 क्या मैंने गुस्सा किया?</p>
-<select>
+<select class="q">
+<option value="">😡 क्या मैंने गुस्सा किया?</option>
 <option>नहीं</option>
 <option>थोड़ा</option>
 <option>काफी</option>
 <option>बहुत ज्यादा</option>
 </select>
 
-<p>💤 क्या मैंने आलस्य किया?</p>
-<select>
+<select class="q">
+<option value="">💤 क्या मैंने आलस्य किया?</option>
 <option>नहीं</option>
 <option>थोड़ा</option>
 <option>काफी</option>
 <option>बहुत ज्यादा</option>
 </select>
 
-<p>⏳ क्या मैंने समय बर्बाद किया?</p>
-<select>
+<select class="q">
+<option value="">⏳ क्या मैंने समय बर्बाद किया?</option>
 <option>नहीं</option>
 <option>थोड़ा</option>
 <option>काफी</option>
 <option>बहुत ज्यादा</option>
 </select>
 
-<p>💪 क्या मैंने कुछ अच्छा किया?</p>
-<select>
+<select class="q">
+<option value="">💪 क्या मैंने कुछ अच्छा किया?</option>
 <option>हाँ, बहुत अच्छा</option>
 <option>थोड़ा</option>
 <option>नहीं</option>
 </select>
 
-<button onclick="alert('🌿 आपने आज का आत्म-निरीक्षण किया!')">
-✔️ संकल्प सेव करें
-</button>
+<button onclick="showResult()">✔️ संकल्प सेव करें</button>
+
+<div id="resultBox"></div>
 
 </div>
+
+<script>
+function showResult() {
+
+    let selects = document.querySelectorAll(".q");
+    let allFilled = true;
+
+    selects.forEach(s => {
+        if (s.value === "") allFilled = false;
+    });
+
+    if (!allFilled) {
+        alert("⚠️ कृपया सभी विकल्प चुनें");
+        return;
+    }
+
+    let results = [
+
+`🌿 आज आपने अपने कर्मों का ईमानदारी से निरीक्षण किया है।
+यह जागरूकता ही आपके जीवन को बदलने की पहली सीढ़ी है।
+कल आप और अधिक सजग और शक्तिशाली बनेंगे।`,
+
+`🔥 आज आपने अपनी कमजोरियों को पहचाना है।
+यही पहचान आपको महान बनाने की दिशा में ले जाएगी।
+कल का दिन आपके लिए सुधार और उन्नति का दिन होगा।`,
+
+`💪 आप अपने जीवन के सारथी बन रहे हैं।
+आपका हर छोटा सुधार भविष्य को उज्ज्वल बना रहा है।
+आप निरंतर प्रगति के मार्ग पर हैं।`,
+
+`🌟 आज का आत्म-निरीक्षण आपके अंदर शक्ति जगा रहा है।
+आप अपने विचारों और कर्मों पर नियंत्रण पा रहे हैं।
+आपका कल आज से बेहतर और सफल होगा।`
+    ];
+
+    let random = Math.floor(Math.random() * results.length);
+
+    let box = document.getElementById("resultBox");
+    box.style.display = "block";
+    box.innerText = results[random];
+}
+</script>
 
 </body>
 </html>
