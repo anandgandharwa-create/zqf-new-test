@@ -201,10 +201,12 @@ function showResult(score) {
     box.style.display = "block";
     box.innerText = resultText;
     saveScore(score); 
+    updateStreak(level);
 }
 
 // 🔥 Streak system
-function updateStreak() {
+function updateStreak(level) {
+
     let today = new Date().toDateString();
     let last = localStorage.getItem("lastDate");
     let streak = parseInt(localStorage.getItem("streak")) || 0;
@@ -215,9 +217,9 @@ function updateStreak() {
         localStorage.setItem("lastDate", today);
     }
 
-document.getElementById("score").innerText += " | 🔥 Streak: " + streak;
+    document.getElementById("score").innerHTML = 
+        level + " | 🔥 Streak: " + streak;
 }
-
 </script>
 
 </body>
