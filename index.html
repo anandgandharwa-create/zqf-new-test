@@ -188,63 +188,14 @@ h1 {
 <button class="next-btn" onclick="nextQuestion()" style="display:none;">
 🚀 आगे बढ़ें
 </button>
+<button onclick="goHome()">🏠 वापस Quiz पर जाएं</button>
 
+<script>
+function goHome(){
+    window.location.href = "index.html";
+}
+</script>
 <div class="result" id="result"></div>
-</div> 
-<div class="sankalp-box">
-    <h3>🌿 आज का आत्म-निरीक्षण</h3>
-
-    <div class="sankalp-item">
-        🙊 क्या मैंने आज निंदा की?
-        <select>
-            <option>नहीं</option>
-            <option>थोड़ी</option>
-            <option>काफी</option>
-            <option>बहुत ज्यादा</option>
-        </select>
-    </div>
-
-    <div class="sankalp-item">
-        😡 क्या मैंने आज गुस्सा किया?
-        <select>
-            <option>नहीं</option>
-            <option>थोड़ा</option>
-            <option>काफी</option>
-            <option>बहुत ज्यादा</option>
-        </select>
-    </div>
-
-    <div class="sankalp-item">
-        💤 क्या मैंने आलस्य किया?
-        <select>
-            <option>नहीं</option>
-            <option>थोड़ा</option>
-            <option>काफी</option>
-            <option>बहुत ज्यादा</option>
-        </select>
-    </div>
-
-    <div class="sankalp-item">
-        ⏳ क्या मैंने समय बर्बाद किया?
-        <select>
-            <option>नहीं</option>
-            <option>थोड़ा</option>
-            <option>काफी</option>
-            <option>बहुत ज्यादा</option>
-        </select>
-    </div>
-
-    <div class="sankalp-item">
-        💪 क्या मैंने आज कुछ अच्छा किया?
-        <select>
-            <option>हाँ, बहुत अच्छा</option>
-            <option>थोड़ा</option>
-            <option>नहीं</option>
-        </select>
-    </div>
-
-    <button onclick="saveSankalp()">✔️ आज का संकल्प सेव करें</button>
-</div>
 </div>
 
 </div>
@@ -370,15 +321,15 @@ function showResult(){
 
     document.getElementById("question").innerText = "✨ आपका परिणाम";
     document.getElementById("options").innerHTML = "";
-    document.getElementById("result").innerHTML += `
+  document.getElementById("result").innerHTML += `
 <br><br>
 <button onclick="goSankalp()" 
-style="margin-top:15px; padding:12px 18px; border:none; border-radius:10px; 
-background: linear-gradient(45deg, #00c853, #00e676); font-weight:bold; cursor:pointer;">
-🌿 आज का आत्म-निरीक्षण करें
+style="padding:12px 18px; border:none; border-radius:10px; 
+background: linear-gradient(45deg, #00c853, #00e676); 
+font-weight:bold; cursor:pointer;">
+🌿 आत्म-निरीक्षण करें
 </button>
 `;
-
     let msg = "";
     let advice = "";
     let sankalp = "";
@@ -430,6 +381,7 @@ background: linear-gradient(45deg, #00c853, #00e676); font-weight:bold; cursor:p
     `;
 
     document.querySelector(".next-btn").style.display = "none";
+    document.querySelector(".sankalp-box").style.display = "block";
 }
 
 loadQuestion();
@@ -437,7 +389,7 @@ function saveSankalp(){
     alert("🌿 बहुत अच्छा! आपने आज का आत्म-निरीक्षण किया।");
 }
     function goSankalp(){
-    window.location.href = "sankalp.html";
+     window.location.href = "sankalp.html";
 }
 </script>
 
