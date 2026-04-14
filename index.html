@@ -191,6 +191,7 @@ let score = 0;
 let streak = 0;
 let level = 1;
 let selected = null;
+let bestStreak = 0;
 
 function loadQuestion(){
     let q = questions[current];
@@ -214,15 +215,42 @@ function selectOption(opt, el){
     selected = opt;
     let correct = questions[current].a;
 
+    // सभी options disable (double click रोकने के लिए)
     document.querySelectorAll(".option").forEach(o=>{
+        o.style.pointerEvents = "none";
+
         if(o.innerText === correct){
             o.classList.add("correct");
         }
+
         if(o.innerText === opt && opt !== correct){
             o.classList.add("wrong");
         }
     });
 
+    // Score + Streak Logic
+    if(opt === correct){
+        score += 10;
+        streak++;
+
+        // ✅ Best streak update
+        if(streak > bestStreak){
+            bestStreak = streak;
+        }
+
+    } else {
+        streak = 0;
+    }
+
+    // Level Calculation
+    level = Math.floor(score / 30) + 1;
+
+    // Top bar update
+    updateTop();
+
+    // Next button show
+    document.querySelector(".next-btn").style.display = "block";
+}
     if(opt === correct){
         score += 10;
         streak++;
@@ -273,7 +301,7 @@ function showResult(){
     document.getElementById("result").innerHTML = `
 ${msg}
 <br><br>⭐ कुल अंक: ${score}
-<br>🔥 Best Streak: ${streak}
+<br>🔥 Best Streak: ${bestStreak}
 <br>🏆 Level: ${level}
 `;
 
