@@ -215,7 +215,6 @@ function selectOption(opt, el){
     selected = opt;
     let correct = questions[current].a;
 
-    // सभी options disable (double click रोकने के लिए)
     document.querySelectorAll(".option").forEach(o=>{
         o.style.pointerEvents = "none";
 
@@ -228,12 +227,10 @@ function selectOption(opt, el){
         }
     });
 
-    // Score + Streak Logic
     if(opt === correct){
         score += 10;
         streak++;
 
-        // ✅ Best streak update
         if(streak > bestStreak){
             bestStreak = streak;
         }
@@ -242,29 +239,12 @@ function selectOption(opt, el){
         streak = 0;
     }
 
-    // Level Calculation
-    level = Math.floor(score / 30) + 1;
-
-    // Top bar update
-    updateTop();
-
-    // Next button show
-    document.querySelector(".next-btn").style.display = "block";
-}
-    if(opt === correct){
-        score += 10;
-        streak++;
-    } else {
-        streak = 0;
-    }
-
     level = Math.floor(score / 30) + 1;
 
     updateTop();
 
     document.querySelector(".next-btn").style.display = "block";
 }
-
 function nextQuestion(){
 
     current++;
