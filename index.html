@@ -16,11 +16,22 @@ body {
 }
 .container::before {
     content: "🦚";
-    font-size: 60px;
+    font-size: 70px;
     position: absolute;
-    left: 20px;
+    left: 10px;
     top: 10px;
-    opacity: 0.2;
+
+    opacity: 0.9;  /* 👈 पहले low था */
+
+    filter: drop-shadow(0 0 10px #00e5ff)
+            drop-shadow(0 0 20px #00e5ff);
+
+    animation: float 3s ease-in-out infinite;
+}
+    @keyframes float {
+    0% { transform: translateY(0px); }
+    50% { transform: translateY(-8px); }
+    100% { transform: translateY(0px); }
 }
 
 .container {
@@ -164,11 +175,6 @@ o: ["रामायण", "महाभारत", "वेद", "पुराण
 a: "महाभारत"
 },
 {
-q: "गीता का मुख्य संदेश क्या है?",
-o: ["त्याग", "भक्ति", "कर्म", "सभी"],
-a: "सभी"
-},
-{
 q: "योग का अर्थ क्या है?",
 o: ["भागना", "जुड़ना", "सोना", "लड़ना"],
 a: "जुड़ना"
@@ -179,24 +185,9 @@ o: ["उन्नति", "विनाश", "शांति", "सुख"],
 a: "विनाश"
 },
 {
-q: "गीता में शांति कैसे मिलती है?",
-o: ["धन से", "त्याग से", "भक्ति से", "दोनों"],
-a: "दोनों"
-},
-{
-q: "मन को कैसे जीतें?",
-o: ["बल से", "ज्ञान से", "क्रोध से", "डर से"],
-a: "ज्ञान से"
-},
-{
 q: "धर्म क्या है?",
 o: ["कर्तव्य", "धन", "सुख", "युद्ध"],
 a: "कर्तव्य"
-},
-{
-q: "कौन सा गुण श्रेष्ठ है?",
-o: ["क्रोध", "लोभ", "सत्त्व", "मोह"],
-a: "सत्त्व"
 },
 {
 q: "गीता में सफलता का मार्ग क्या है?",
@@ -288,21 +279,38 @@ function showResult(){
     document.getElementById("options").innerHTML = "";
 
     let msg = "";
+    let advice = "";
 
-    if(score >= 80){
+    // 🎯 Score based message
+    if(score >= 60){
         msg = "🌟 अद्भुत! आप गीता के गहरे जानकार हैं।";
-    } else if(score >= 50){
+        advice = "👉 आप ज्ञान के मार्ग पर आगे बढ़ रहे हैं। अब इस ज्ञान को जीवन में उतारें — यही सच्ची साधना है।";
+    } 
+    else if(score >= 30){
         msg = "👍 अच्छा! आप सही दिशा में हैं।";
-    } else {
+        advice = "👉 निरंतर अभ्यास और समझ से आपका ज्ञान और बढ़ेगा। रोज थोड़ा सीखना ही असली प्रगति है।";
+    } 
+    else{
         msg = "📿 शुरुआत शानदार है… सीखते रहें।";
+        advice = "👉 हर महान यात्रा एक छोटे कदम से शुरू होती है। धैर्य रखें और ज्ञान को अपनाते रहें।";
     }
 
+    // 🌿 FINAL RESULT UI (Big + Beautiful)
     document.getElementById("result").innerHTML = `
-${msg}
-<br><br>⭐ कुल अंक: ${score}
-<br>🔥 Best Streak: ${bestStreak}
-<br>🏆 Level: ${level}
-`;
+    <div style="font-size:22px; font-weight:bold; color:gold; margin-bottom:10px;">
+        ${msg}
+    </div>
+
+    <div style="font-size:16px; margin-bottom:15px; color:#ffffff;">
+        ${advice}
+    </div>
+
+    <div style="font-size:18px; line-height:1.6;">
+        ⭐ कुल अंक: <b>${score}</b><br>
+        🔥 Best Streak: <b>${bestStreak}</b><br>
+        🏆 Level: <b>${level}</b>
+    </div>
+    `;
 
     document.querySelector(".next-btn").style.display = "none";
 }
