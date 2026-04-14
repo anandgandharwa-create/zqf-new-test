@@ -4,55 +4,76 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>🌿 आत्म-निरीक्षण</title>
+<title>🌿 आत्म-निरीक्षण App</title>
 
 <style>
 body {
-    font-family: sans-serif;
-    background: #0a0f2c;
+    margin: 0;
+    font-family: 'Segoe UI', sans-serif;
+    background: linear-gradient(135deg, #0a0f2c, #001f3f);
     color: white;
-    text-align: center;
-    padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
 }
 
 .card {
-    max-width: 500px;
-    margin: auto;
-    background: rgba(0, 100, 255, 0.1);
+    width: 90%;
+    max-width: 420px;
+    background: rgba(255,255,255,0.05);
+    backdrop-filter: blur(12px);
+    border-radius: 20px;
     padding: 20px;
-    border-radius: 15px;
-    box-shadow: 0 0 15px rgba(0, 200, 255, 0.3);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
 }
 
 h2 {
+    text-align: center;
     color: gold;
 }
 
 select {
     width: 100%;
-    padding: 10px;
-    margin: 10px 0;
-    border-radius: 8px;
-}
-
-button {
-    margin-top: 15px;
     padding: 12px;
-    width: 100%;
+    margin: 10px 0;
     border-radius: 10px;
-    background: gold;
     border: none;
-    font-weight: bold;
+    background: rgba(255,255,255,0.1);
+    color: white;
 }
 
-/* RESULT BOX */
+/* Progress */
+#progress {
+    height: 8px;
+    background: rgba(255,255,255,0.1);
+    border-radius: 10px;
+    overflow: hidden;
+    margin-bottom: 15px;
+}
+
+#bar {
+    height: 100%;
+    width: 0%;
+    background: gold;
+    transition: 0.3s;
+}
+
+/* Result */
 #resultBox {
-    margin-top: 25px;
+    margin-top: 15px;
     padding: 15px;
-    border-radius: 12px;
-    background: rgba(0, 255, 150, 0.1);
+    border-radius: 15px;
+    background: rgba(0,255,150,0.08);
     border: 1px solid rgba(0,255,150,0.5);
     display: none;
+    line-height: 1.6;
+}
+
+#score {
+    font-size: 18px;
+    margin-top: 10px;
+    color: gold;
 }
 </style>
 </head>
@@ -60,93 +81,132 @@ button {
 <body>
 
 <div class="card">
-<h2>🌿 आज का आत्म-निरीक्षण</h2>
+
+<h2>🌿 आत्म-निरीक्षण</h2>
+
+<div id="progress"><div id="bar"></div></div>
 
 <select class="q">
-<option value="">🙊 क्या मैंने आज निंदा की?</option>
-<option>नहीं</option>
-<option>थोड़ी</option>
-<option>काफी</option>
-<option>बहुत ज्यादा</option>
+<option value="">🙊 निंदा?</option>
+<option value="0">नहीं</option>
+<option value="1">थोड़ी</option>
+<option value="2">काफी</option>
+<option value="3">बहुत ज्यादा</option>
 </select>
 
 <select class="q">
-<option value="">😡 क्या मैंने गुस्सा किया?</option>
-<option>नहीं</option>
-<option>थोड़ा</option>
-<option>काफी</option>
-<option>बहुत ज्यादा</option>
+<option value="">😡 गुस्सा?</option>
+<option value="0">नहीं</option>
+<option value="1">थोड़ा</option>
+<option value="2">काफी</option>
+<option value="3">बहुत ज्यादा</option>
 </select>
 
 <select class="q">
-<option value="">💤 क्या मैंने आलस्य किया?</option>
-<option>नहीं</option>
-<option>थोड़ा</option>
-<option>काफी</option>
-<option>बहुत ज्यादा</option>
+<option value="">💤 आलस्य?</option>
+<option value="0">नहीं</option>
+<option value="1">थोड़ा</option>
+<option value="2">काफी</option>
+<option value="3">बहुत ज्यादा</option>
 </select>
 
 <select class="q">
-<option value="">⏳ क्या मैंने समय बर्बाद किया?</option>
-<option>नहीं</option>
-<option>थोड़ा</option>
-<option>काफी</option>
-<option>बहुत ज्यादा</option>
+<option value="">⏳ समय बर्बाद?</option>
+<option value="0">नहीं</option>
+<option value="1">थोड़ा</option>
+<option value="2">काफी</option>
+<option value="3">बहुत ज्यादा</option>
 </select>
 
 <select class="q">
-<option value="">💪 क्या मैंने कुछ अच्छा किया?</option>
-<option>हाँ, बहुत अच्छा</option>
-<option>थोड़ा</option>
-<option>नहीं</option>
+<option value="">💪 अच्छा काम?</option>
+<option value="0">हाँ, बहुत अच्छा</option>
+<option value="1">थोड़ा</option>
+<option value="3">नहीं</option>
 </select>
 
-<button onclick="showResult()">✔️ संकल्प सेव करें</button>
-
+<div id="score"></div>
 <div id="resultBox"></div>
 
 </div>
 
 <script>
-function showResult() {
 
-    let selects = document.querySelectorAll(".q");
-    let allFilled = true;
+let selects = document.querySelectorAll(".q");
+
+selects.forEach(s => {
+    s.addEventListener("change", checkAll);
+});
+
+function checkAll() {
+
+    let filled = 0;
+    let total = selects.length;
+    let score = 0;
 
     selects.forEach(s => {
-        if (s.value === "") allFilled = false;
+        if (s.value !== "") {
+            filled++;
+            score += parseInt(s.value);
+        }
     });
 
-    if (!allFilled) {
-        alert("⚠️ कृपया सभी विकल्प चुनें");
-        return;
+    // Progress bar
+    document.getElementById("bar").style.width = (filled/total)*100 + "%";
+
+    // All selected
+    if (filled === total) {
+        showResult(score);
+        updateStreak();
+    }
+}
+
+function showResult(score) {
+
+    let resultText = "";
+    let level = "";
+
+    if (score <= 3) {
+        level = "🔥 Powerful Day";
+        resultText = `🌟 आज आपका दिन अत्यंत श्रेष्ठ रहा।
+आपने अपने मन और कर्मों पर अच्छा नियंत्रण रखा।
+आप आत्म-विकास के उच्च स्तर पर हैं।`;
+    }
+    else if (score <= 7) {
+        level = "💪 Improving";
+        resultText = `🌿 आपने अच्छा प्रयास किया है।
+कुछ सुधार की गुंजाइश है, लेकिन आप सही दिशा में हैं।
+कल आप और बेहतर कर सकते हैं।`;
+    }
+    else {
+        level = "⚠️ Needs Awareness";
+        resultText = `🔥 आज आपको खुद पर थोड़ा और ध्यान देने की आवश्यकता है।
+आपकी आदतों में सुधार जरूरी है।
+कल एक नई शुरुआत करें।`;
     }
 
-    let results = [
-
-`🌿 आज आपने अपने कर्मों का ईमानदारी से निरीक्षण किया है।
-यह जागरूकता ही आपके जीवन को बदलने की पहली सीढ़ी है।
-कल आप और अधिक सजग और शक्तिशाली बनेंगे।`,
-
-`🔥 आज आपने अपनी कमजोरियों को पहचाना है।
-यही पहचान आपको महान बनाने की दिशा में ले जाएगी।
-कल का दिन आपके लिए सुधार और उन्नति का दिन होगा।`,
-
-`💪 आप अपने जीवन के सारथी बन रहे हैं।
-आपका हर छोटा सुधार भविष्य को उज्ज्वल बना रहा है।
-आप निरंतर प्रगति के मार्ग पर हैं।`,
-
-`🌟 आज का आत्म-निरीक्षण आपके अंदर शक्ति जगा रहा है।
-आप अपने विचारों और कर्मों पर नियंत्रण पा रहे हैं।
-आपका कल आज से बेहतर और सफल होगा।`
-    ];
-
-    let random = Math.floor(Math.random() * results.length);
+    document.getElementById("score").innerText = "आज का स्तर: " + level;
 
     let box = document.getElementById("resultBox");
     box.style.display = "block";
-    box.innerText = results[random];
+    box.innerText = resultText;
 }
+
+// 🔥 Streak system
+function updateStreak() {
+    let today = new Date().toDateString();
+    let last = localStorage.getItem("lastDate");
+    let streak = parseInt(localStorage.getItem("streak")) || 0;
+
+    if (last !== today) {
+        streak++;
+        localStorage.setItem("streak", streak);
+        localStorage.setItem("lastDate", today);
+    }
+
+    document.getElementById("score").innerText += " | 🔥 Streak: " + streak + " days";
+}
+
 </script>
 
 </body>
