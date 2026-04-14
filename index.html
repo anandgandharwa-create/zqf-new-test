@@ -126,19 +126,7 @@ h1 {
     from {opacity:0;}
     to {opacity:1;}
 }
-    .sankalp-box {
-    margin-top: 20px;
-    padding: 15px;
-    border-radius: 15px;
-    background: rgba(0, 100, 255, 0.1);
-    box-shadow: 0 0 15px rgba(0, 200, 255, 0.3);
-         display: none;
-}
 
-.sankalp-box h3 {
-    color: gold;
-    margin-bottom: 10px;
-}
 
 .sankalp-item {
     margin: 10px 0;
@@ -305,15 +293,7 @@ function showResult(){
 
     document.getElementById("question").innerText = "✨ आपका परिणाम";
     document.getElementById("options").innerHTML = "";
-  document.getElementById("result").innerHTML += `
-<br><br>
-<button onclick="goSankalp()" 
-style="padding:12px 18px; border:none; border-radius:10px; 
-background: linear-gradient(45deg, #00c853, #00e676); 
-font-weight:bold; cursor:pointer;">
-🌿 आत्म-निरीक्षण करें
-</button>
-`;
+
     let msg = "";
     let advice = "";
     let sankalp = "";
@@ -335,7 +315,7 @@ font-weight:bold; cursor:pointer;">
         sankalp = "🔥 आज का संकल्प: मैं हार नहीं मानूँगा और सीखते रहूँगा।";
     }
 
-    // 🌿 FINAL RESULT UI
+    // 🌿 FINAL RESULT UI (Button सहित)
     document.getElementById("result").innerHTML = `
     <div style="font-size:22px; font-weight:bold; color:gold; margin-bottom:10px;">
         ${msg}
@@ -362,10 +342,18 @@ font-weight:bold; cursor:pointer;">
     background: linear-gradient(45deg, #ffd700, #ffb300); font-weight:bold; cursor:pointer;">
     🔁 फिर से खेलें
     </button>
+
+    <br><br>
+
+    <button onclick="goSankalp()" 
+    style="padding:12px 18px; border:none; border-radius:10px; 
+    background: linear-gradient(45deg, #00c853, #00e676); 
+    font-weight:bold; cursor:pointer;">
+    🌿 आत्म-निरीक्षण करें
+    </button>
     `;
 
     document.querySelector(".next-btn").style.display = "none";
-    document.querySelector(".sankalp-box").style.display = "block";
 }
 
 loadQuestion();
