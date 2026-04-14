@@ -136,7 +136,7 @@ select {
 
 <div id="score"></div>
 <div id="resultBox"></div>
-<canvas id="chart" height="150"></canvas>
+
 </div>
 
 <script>
@@ -147,57 +147,7 @@ selects.forEach(s => {
     s.addEventListener("change", checkAll);
 });
 // 📊 Save daily score
-function saveScore(score) {
-    let data = JSON.parse(localStorage.getItem("weeklyData")) || [];
 
-    let today = new Date().toLocaleDateString();
-
-    // अगर आज का already है तो replace करें
-    let existing = data.find(d => d.date === today);
-    if (existing) {
-        existing.score = score;
-    } else {
-        data.push({date: today, score: score});
-    }
-
-    // सिर्फ last 7 days रखें
-    if (data.length > 7) data.shift();
-
-    localStorage.setItem("weeklyData", JSON.stringify(data));
-
-    drawChart();
-}
-
-// 📊 Draw Graph
-function drawChart() {
-    let canvas = document.getElementById("chart");
-    let ctx = canvas.getContext("2d");
-
-    let data = JSON.parse(localStorage.getItem("weeklyData")) || [];
-
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-    let maxScore = 15; // max possible score
-    let width = canvas.width / 7;
-
-    data.forEach((d, i) => {
-        let height = (d.score / maxScore) * canvas.height;
-
-        ctx.fillStyle = "gold";
-        ctx.fillRect(i * width + 10, canvas.height - height, width - 20, height);
-
-        ctx.fillStyle = "white";
-        ctx.font = "10px sans-serif";
-        ctx.fillText(d.score, i * width + 15, canvas.height - height - 5);
-    });
-}
-
-// 🔁 Modify your existing showResult function
-// बस इस line को ADD करें अंदर:
-saveScore(score);
-
-// page load पर graph दिखाओ
-window.onload = drawChart;
 function checkAll() {
 
     let filled = 0;
@@ -245,7 +195,7 @@ function showResult(score) {
 कल एक नई शुरुआत करें।`;
     }
 
-    document.getElementById("score").innerText = "आज का स्तर: " + level;
+   document.getElementById("score").innerText = level;
 
     let box = document.getElementById("resultBox");
     box.style.display = "block";
