@@ -132,6 +132,7 @@ h1 {
     border-radius: 15px;
     background: rgba(0, 100, 255, 0.1);
     box-shadow: 0 0 15px rgba(0, 200, 255, 0.3);
+         display: none;
 }
 
 .sankalp-box h3 {
@@ -369,6 +370,14 @@ function showResult(){
 
     document.getElementById("question").innerText = "✨ आपका परिणाम";
     document.getElementById("options").innerHTML = "";
+    document.getElementById("result").innerHTML += `
+<br><br>
+<button onclick="goSankalp()" 
+style="margin-top:15px; padding:12px 18px; border:none; border-radius:10px; 
+background: linear-gradient(45deg, #00c853, #00e676); font-weight:bold; cursor:pointer;">
+🌿 आज का आत्म-निरीक्षण करें
+</button>
+`;
 
     let msg = "";
     let advice = "";
@@ -426,6 +435,9 @@ function showResult(){
 loadQuestion();
 function saveSankalp(){
     alert("🌿 बहुत अच्छा! आपने आज का आत्म-निरीक्षण किया।");
+}
+    function goSankalp(){
+    window.location.href = "sankalp.html";
 }
 </script>
 
