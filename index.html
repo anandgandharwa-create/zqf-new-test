@@ -3,93 +3,98 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Divine Prediction Game</title>
+
+<title>📿 गीता ज्ञान Quiz</title>
 
 <style>
 body {
     margin: 0;
-    font-family: Arial;
-    background: radial-gradient(circle, #000428, #004e92);
+    font-family: 'Segoe UI', sans-serif;
+    background: radial-gradient(circle, #1a0000, #000000);
     color: white;
     text-align: center;
 }
+
 .container {
-    padding: 15px;
     max-width: 500px;
     margin: auto;
+    padding: 20px;
 }
 
-/* Heading */
 h1 {
     color: gold;
-    font-size: 22px;
-}
-    .question-box {
-    background: rgba(255,255,255,0.1);
-    padding: 15px;
-    border-radius: 15px;
-    margin-top: 15px;
-}
-    /* 📱 Extra small screens */
-@media (max-width: 400px) {
-    h1 {
-        font-size: 18px;
-    }
-    #question {
-        font-size: 16px;
-    }
-    .option {
-        font-size: 14px;
-        padding: 12px;
-    }
 }
 
-/* Question text */
+.top-bar {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+    font-size: 14px;
+    color: #ffcc00;
+}
+
+/* Card */
+.card {
+    background: rgba(255, 0, 0, 0.08);
+    border: 1px solid rgba(255, 215, 0, 0.3);
+    padding: 20px;
+    border-radius: 20px;
+}
+
+/* Question */
 #question {
+    margin-bottom: 15px;
     font-size: 18px;
-    line-height: 1.4;
 }
 
+/* Options */
 .option {
-    display: block;
-    background: #1e90ff;
-    margin: 8px 0;
-    padding: 14px;
-    border-radius: 12px;
-    cursor: pointer;
-    font-size: 16px;
-}
-
-/* Selected */
-.option.selected {
-    background: gold;
+    background: linear-gradient(45deg, #ffcc00, #ff9900);
     color: black;
+    padding: 12px;
+    margin: 8px 0;
+    border-radius: 10px;
+    cursor: pointer;
     font-weight: bold;
 }
 
-.next-btn, #restartBtn {
+.option.correct {
+    background: #00e676;
+}
+
+.option.wrong {
+    background: red;
+    color: white;
+}
+
+/* Button */
+.next-btn {
     width: 100%;
-    padding: 14px;
+    padding: 12px;
     margin-top: 15px;
-    border-radius: 12px;
-    font-size: 16px;
-    background: gold;   /* 👈 yellow */
+    border-radius: 10px;
+    background: linear-gradient(45deg, #00c853, #00e676);
     color: black;
+    font-weight: bold;
     border: none;
     cursor: pointer;
 }
 
-/* Result text */
+/* Result */
 .result {
     margin-top: 15px;
-    font-size: 16px;
     color: gold;
+    font-size: 18px;
 }
-   #restartBtn {
-    margin-top: 30px;
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
+
+/* Animation */
+.fade {
+    animation: fade 0.5s ease-in-out;
+}
+
+@keyframes fade {
+    from {opacity:0;}
+    to {opacity:1;}
 }
 </style>
 </head>
@@ -97,116 +102,186 @@ h1 {
 <body>
 
 <div class="container">
-    <h1>🔮 Divine Prediction</h1>
 
-    <div class="question-box">
-        <h2 id="question"></h2>
-        <div id="options"></div>
-        <div class="result" id="result"></div>
-        <button id="nextBtn" class="next-btn" onclick="nextQuestion()" style="display:none;">
-➡️ Next
+<h1>📿 गीता ज्ञान Quiz</h1>
+
+<div class="top-bar">
+    <div>⭐ Marks: <span id="score">0</span></div>
+    <div>🔥 Streak: <span id="streak">0</span></div>
+    <div>🏆 Level: <span id="level">1</span></div>
+</div>
+
+<div class="card fade">
+
+<div id="question"></div>
+<div id="options"></div>
+
+<button class="next-btn" onclick="nextQuestion()" style="display:none;">
+🚀 आगे बढ़ें
 </button>
-    <button id="restartBtn" onclick="restartGame()" style="display:none; margin-top:20px;">
-🔁 फिर से शुरू करें
-</button>
-    </div>
+
+<div class="result" id="result"></div>
+
+</div>
+
 </div>
 
 <script>
+
 let questions = [
-    {
-        question: "आप अभी जीवन में क्या खोज रहे हैं?",
-        options: ["शांति", "सफलता", "प्रेम"]
-    },
-    {
-        question: "आपको सबसे ज्यादा क्या रोकता है?",
-        options: ["डर", "आलस", "लोगों की सोच"]
-    },
-    {
-        question: "आपका दिल अभी क्या चाहता है?",
-        options: ["आराम", "बदलाव", "कुछ बड़ा"]
-    }
+{
+q: "गीता में अर्जुन के सारथी कौन थे?",
+o: ["शिव", "कृष्ण", "इंद्र", "ब्रह्मा"],
+a: "कृष्ण"
+},
+{
+q: "कर्म करने का अधिकार किस पर है?",
+o: ["फल पर", "कर्म पर", "दूसरों पर", "भाग्य पर"],
+a: "कर्म पर"
+},
+{
+q: "गीता किस ग्रंथ का हिस्सा है?",
+o: ["रामायण", "महाभारत", "वेद", "पुराण"],
+a: "महाभारत"
+},
+{
+q: "गीता का मुख्य संदेश क्या है?",
+o: ["त्याग", "भक्ति", "कर्म", "सभी"],
+a: "सभी"
+},
+{
+q: "योग का अर्थ क्या है?",
+o: ["भागना", "जुड़ना", "सोना", "लड़ना"],
+a: "जुड़ना"
+},
+{
+q: "अहंकार क्या करता है?",
+o: ["उन्नति", "विनाश", "शांति", "सुख"],
+a: "विनाश"
+},
+{
+q: "गीता में शांति कैसे मिलती है?",
+o: ["धन से", "त्याग से", "भक्ति से", "दोनों"],
+a: "दोनों"
+},
+{
+q: "मन को कैसे जीतें?",
+o: ["बल से", "ज्ञान से", "क्रोध से", "डर से"],
+a: "ज्ञान से"
+},
+{
+q: "धर्म क्या है?",
+o: ["कर्तव्य", "धन", "सुख", "युद्ध"],
+a: "कर्तव्य"
+},
+{
+q: "कौन सा गुण श्रेष्ठ है?",
+o: ["क्रोध", "लोभ", "सत्त्व", "मोह"],
+a: "सत्त्व"
+},
+{
+q: "गीता में सफलता का मार्ग क्या है?",
+o: ["भाग्य", "कर्म", "डर", "लालच"],
+a: "कर्म"
+}
 ];
 
-let answersChosen = [];
 let current = 0;
+let score = 0;
+let streak = 0;
+let level = 1;
 let selected = null;
 
-function loadQuestion() {
-    document.getElementById("result").innerHTML = "";
-
+function loadQuestion(){
     let q = questions[current];
-    document.getElementById("question").innerText = q.question;
 
-    let optionsHTML = "";
-    q.options.forEach((opt) => {
-       optionsHTML += `<div class="option" onclick="selectOption('${opt}', this)">${opt}</div>`;
+    document.getElementById("question").innerText = (current+1) + ". " + q.q;
+
+    let html = "";
+    q.o.forEach(opt=>{
+        html += `<div class="option" onclick="selectOption('${opt}', this)">${opt}</div>`;
     });
 
-    document.getElementById("options").innerHTML = optionsHTML;
-    document.getElementById("nextBtn").style.display = "none";
+    document.getElementById("options").innerHTML = html;
+    document.querySelector(".next-btn").style.display = "none";
+    selected = null;
 }
 
-function selectOption(option, element) {
+function selectOption(opt, el){
 
-    selected = option; // save selected answer
+    if(selected) return;
 
-    let allOptions = document.querySelectorAll(".option");
-    allOptions.forEach(opt => opt.classList.remove("selected"));
+    selected = opt;
+    let correct = questions[current].a;
 
-    element.classList.add("selected");
+    document.querySelectorAll(".option").forEach(o=>{
+        if(o.innerText === correct){
+            o.classList.add("correct");
+        }
+        if(o.innerText === opt && opt !== correct){
+            o.classList.add("wrong");
+        }
+    });
 
-    document.getElementById("nextBtn").style.display = "inline-block";
-}
-
-function nextQuestion() {
-
-    if (!selected) {
-        alert("⚠️ पहले एक विकल्प चुनिए");
-        return;
+    if(opt === correct){
+        score += 10;
+        streak++;
+    } else {
+        streak = 0;
     }
 
-    answersChosen.push(selected);
-    selected = null;
+    level = Math.floor(score / 30) + 1;
+
+    updateTop();
+
+    document.querySelector(".next-btn").style.display = "block";
+}
+
+function nextQuestion(){
 
     current++;
 
-    if (current >= questions.length) {
-        showPrediction();
+    if(current >= questions.length){
+        showResult();
         return;
     }
 
     loadQuestion();
 }
 
-function showPrediction() {
-    let message = "";
+function updateTop(){
+    document.getElementById("score").innerText = score;
+    document.getElementById("streak").innerText = streak;
+    document.getElementById("level").innerText = level;
+}
 
-    if (answersChosen.includes("डर")) {
-        message = "🔮 ब्रह्मांड का संकेत: आपका डर ही आपकी सबसे बड़ी शक्ति बनने वाला है। उसे स्वीकार करें।";
-    } 
-    else if (answersChosen.includes("सफलता")) {
-        message = "🔮 संकेत: आने वाले समय में आपके लिए बड़ा अवसर तैयार है। तैयार रहिए।";
-    } 
-    else {
-        message = "🔮 संकेत: आपका जीवन एक नए मोड़ पर है। खुद पर भरोसा रखें।";
+function showResult(){
+
+    document.getElementById("question").innerText = "✨ आपका परिणाम";
+    document.getElementById("options").innerHTML = "";
+
+    let msg = "";
+
+    if(score >= 80){
+        msg = "🌟 अद्भुत! आप गीता के गहरे जानकार हैं।";
+    } else if(score >= 50){
+        msg = "👍 अच्छा! आप सही दिशा में हैं।";
+    } else {
+        msg = "📿 शुरुआत शानदार है… सीखते रहें।";
     }
 
-    document.getElementById("question").innerText = "✨ आपका Divine Message";
-    document.getElementById("options").innerHTML = "";
-    document.getElementById("result").innerText = message;
-    document.getElementById("restartBtn").style.display = "inline-block";
-    document.getElementById("nextBtn").style.display = "none";
+    document.getElementById("result").innerHTML = `
+${msg}
+<br><br>⭐ कुल अंक: ${score}
+<br>🔥 Best Streak: ${streak}
+<br>🏆 Level: ${level}
+`;
+
+    document.querySelector(".next-btn").style.display = "none";
 }
 
 loadQuestion();
-    function restartGame() {
-    current = 0;
-    answersChosen = [];
-    loadQuestion();
-        selected = null;
-        document.getElementById("restartBtn").style.display = "none";
-}
+
 </script>
 
 </body>
