@@ -280,22 +280,26 @@ function showResult(){
 
     let msg = "";
     let advice = "";
+    let sankalp = "";
 
-    // 🎯 Score based message
+    // 🎯 Score based message + Sankalp
     if(score >= 60){
         msg = "🌟 अद्भुत! आप गीता के गहरे जानकार हैं।";
-        advice = "👉 आप ज्ञान के मार्ग पर आगे बढ़ रहे हैं। अब इस ज्ञान को जीवन में उतारें - यही सच्ची साधना है।";
+        advice = "👉 आप ज्ञान के मार्ग पर आगे बढ़ रहे हैं। अब इस ज्ञान को जीवन में उतारें — यही सच्ची साधना है।";
+        sankalp = "🧘 आज का संकल्प: मैं अपने ज्ञान को कर्म में बदलूँगा।";
     } 
     else if(score >= 30){
         msg = "👍 अच्छा! आप सही दिशा में हैं।";
         advice = "👉 निरंतर अभ्यास और समझ से आपका ज्ञान और बढ़ेगा। रोज थोड़ा सीखना ही असली प्रगति है।";
+        sankalp = "🌿 आज का संकल्प: मैं आज कुछ नया सीखूँगा और उसे अपनाऊँगा।";
     } 
     else{
         msg = "📿 शुरुआत शानदार है… सीखते रहें।";
         advice = "👉 हर महान यात्रा एक छोटे कदम से शुरू होती है। धैर्य रखें और ज्ञान को अपनाते रहें।";
+        sankalp = "🔥 आज का संकल्प: मैं हार नहीं मानूँगा और सीखते रहूँगा।";
     }
 
-    // 🌿 FINAL RESULT UI (Big + Beautiful)
+    // 🌿 FINAL RESULT UI
     document.getElementById("result").innerHTML = `
     <div style="font-size:22px; font-weight:bold; color:gold; margin-bottom:10px;">
         ${msg}
@@ -305,11 +309,23 @@ function showResult(){
         ${advice}
     </div>
 
+    <div style="font-size:18px; margin-bottom:15px; color:#00e676; font-weight:bold;">
+        ${sankalp}
+    </div>
+
     <div style="font-size:18px; line-height:1.6;">
         ⭐ कुल अंक: <b>${score}</b><br>
         🔥 Best Streak: <b>${bestStreak}</b><br>
         🏆 Level: <b>${level}</b>
     </div>
+
+    <br>
+
+    <button onclick="location.reload()" 
+    style="margin-top:15px; padding:12px 18px; border:none; border-radius:10px; 
+    background: linear-gradient(45deg, #ffd700, #ffb300); font-weight:bold; cursor:pointer;">
+    🔁 फिर से खेलें
+    </button>
     `;
 
     document.querySelector(".next-btn").style.display = "none";
