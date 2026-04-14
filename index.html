@@ -126,6 +126,44 @@ h1 {
     from {opacity:0;}
     to {opacity:1;}
 }
+    .sankalp-box {
+    margin-top: 20px;
+    padding: 15px;
+    border-radius: 15px;
+    background: rgba(0, 100, 255, 0.1);
+    box-shadow: 0 0 15px rgba(0, 200, 255, 0.3);
+}
+
+.sankalp-box h3 {
+    color: gold;
+    margin-bottom: 10px;
+}
+
+.sankalp-item {
+    margin: 10px 0;
+    font-size: 14px;
+}
+
+.sankalp-item select {
+    margin-top: 5px;
+    width: 100%;
+    padding: 8px;
+    border-radius: 8px;
+    border: none;
+    background: #0a1f44;
+    color: white;
+}
+
+.sankalp-box button {
+    margin-top: 15px;
+    padding: 10px;
+    width: 100%;
+    border-radius: 10px;
+    border: none;
+    background: linear-gradient(45deg, #ffd700, #ffb300);
+    font-weight: bold;
+    cursor: pointer;
+}
 </style>
 </head>
 
@@ -151,7 +189,60 @@ h1 {
 </button>
 
 <div class="result" id="result"></div>
+<div class="sankalp-box">
+    <h3>🌿 आज का आत्म-निरीक्षण</h3>
 
+    <div class="sankalp-item">
+        🙊 क्या मैंने आज निंदा की?
+        <select>
+            <option>नहीं</option>
+            <option>थोड़ी</option>
+            <option>काफी</option>
+            <option>बहुत ज्यादा</option>
+        </select>
+    </div>
+
+    <div class="sankalp-item">
+        😡 क्या मैंने आज गुस्सा किया?
+        <select>
+            <option>नहीं</option>
+            <option>थोड़ा</option>
+            <option>काफी</option>
+            <option>बहुत ज्यादा</option>
+        </select>
+    </div>
+
+    <div class="sankalp-item">
+        💤 क्या मैंने आलस्य किया?
+        <select>
+            <option>नहीं</option>
+            <option>थोड़ा</option>
+            <option>काफी</option>
+            <option>बहुत ज्यादा</option>
+        </select>
+    </div>
+
+    <div class="sankalp-item">
+        ⏳ क्या मैंने समय बर्बाद किया?
+        <select>
+            <option>नहीं</option>
+            <option>थोड़ा</option>
+            <option>काफी</option>
+            <option>बहुत ज्यादा</option>
+        </select>
+    </div>
+
+    <div class="sankalp-item">
+        💪 क्या मैंने आज कुछ अच्छा किया?
+        <select>
+            <option>हाँ, बहुत अच्छा</option>
+            <option>थोड़ा</option>
+            <option>नहीं</option>
+        </select>
+    </div>
+
+    <button onclick="saveSankalp()">✔️ आज का संकल्प सेव करें</button>
+</div>
 </div>
 
 </div>
@@ -332,7 +423,9 @@ function showResult(){
 }
 
 loadQuestion();
-
+function saveSankalp(){
+    alert("🌿 बहुत अच्छा! आपने आज का आत्म-निरीक्षण किया।");
+}
 </script>
 
 </body>
