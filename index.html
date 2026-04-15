@@ -4,367 +4,148 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>📿 गीता ज्ञान Quiz</title>
+<title>Zero Quantum Frequency</title>
 
 <style>
 body {
     margin: 0;
     font-family: 'Segoe UI', sans-serif;
-    background: radial-gradient(circle at top, #0a0f2c, #000000);
+    background: radial-gradient(circle at top, #001a2e, #000814);
     color: white;
     text-align: center;
 }
-.container::before {
-    content: "🦚";
-    font-size: 70px;
-    position: absolute;
-    left: 10px;
-    top: 10px;
 
-    opacity: 0.9;  /* 👈 पहले low था */
-
-    filter: drop-shadow(0 0 10px #00e5ff)
-            drop-shadow(0 0 20px #00e5ff);
-
-    animation: float 3s ease-in-out infinite;
-}
-    @keyframes float {
-    0% { transform: translateY(0px); }
-    50% { transform: translateY(-8px); }
-    100% { transform: translateY(0px); }
+/* Header */
+.header {
+    padding: 15px;
+    font-size: 20px;
+    background: #4b1d6b;
+    font-weight: bold;
 }
 
-.container {
-    position: relative;
-}
-.container {
-    max-width: 500px;
-    margin: auto;
-    padding: 20px;
-}
-
-h1 {
-    color: gold;
-    text-shadow: 0 0 10px gold;
-}
-
-.top-bar {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 10px;
-    font-size: 14px;
-    color: #ffcc00;
-}
-
-/* Card */
+/* Card Base */
 .card {
-    background: rgba(0, 50, 120, 0.2);
-    border: 1px solid rgba(0, 200, 255, 0.4);
+    margin: 20px;
     padding: 20px;
-    border-radius: 20px;
-    box-shadow: 0 0 25px rgba(0, 200, 255, 0.3);
-}
-/* Question */
-#question {
-    margin-bottom: 15px;
-    font-size: 18px;
+    border-radius: 18px;
+    background: rgba(255,255,255,0.05);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 0 25px rgba(0,255,255,0.1);
 }
 
-/* Options */
-.option {
-    background: linear-gradient(45deg, #00c6ff, #0072ff);
-    color: white;
-    padding: 12px;
-    margin: 8px 0;
-    border-radius: 12px;
-    cursor: pointer;
+/* Hero */
+.hero {
+    font-size: 20px;
+    line-height: 1.6;
+}
+.hero span {
+    color: #ffd700;
     font-weight: bold;
-    transition: 0.2s;
 }
 
-.option:hover {
-    transform: scale(1.05);
+/* Sutra */
+.sutra {
+    font-size: 16px;
+    color: #00ffcc;
 }
 
-.option.correct {
-    background: linear-gradient(45deg, #ffd700, #ffb300);
+/* Buttons */
+.btn {
+    display: block;
+    margin: 12px auto;
+    padding: 14px;
+    width: 85%;
+    border-radius: 30px;
+    border: none;
+    font-size: 15px;
+    cursor: pointer;
+}
+
+.green {
+    background: linear-gradient(45deg, #00c853, #00e676);
     color: black;
 }
 
-.option.wrong {
-    background: red;
-    color: white;
-}
-
-/* Button */
-.next-btn {
-    width: 100%;
-    padding: 12px;
-    margin-top: 15px;
-    border-radius: 10px;
-    background: linear-gradient(45deg, #ffd700, #ffb300);
+.yellow {
+    background: linear-gradient(45deg, #ffcc00, #ffd600);
     color: black;
-    font-weight: bold;
-    border: none;
-    cursor: pointer;
-    box-shadow: 0 0 10px rgba(255, 215, 0, 0.7);
 }
 
-/* Result */
-.result {
-    margin-top: 15px;
-    color: gold;
-    font-size: 18px;
+.outline {
+    border: 1px solid #ffd700;
+    background: transparent;
+    color: #ffd700;
 }
 
-/* Animation */
-.fade {
-    animation: fade 0.5s ease-in-out;
-}
-
-@keyframes fade {
-    from {opacity:0;}
-    to {opacity:1;}
-}
-
-
-.sankalp-item {
-    margin: 10px 0;
-    font-size: 14px;
-}
-
-.sankalp-item select {
-    margin-top: 5px;
-    width: 100%;
-    padding: 8px;
-    border-radius: 8px;
-    border: none;
-    background: #0a1f44;
-    color: white;
-}
-
-.sankalp-box button {
-    margin-top: 15px;
-    padding: 10px;
-    width: 100%;
-    border-radius: 10px;
-    border: none;
-    background: linear-gradient(45deg, #ffd700, #ffb300);
-    font-weight: bold;
-    cursor: pointer;
+/* Footer */
+.footer {
+    font-size: 12px;
+    opacity: 0.6;
+    margin: 20px;
 }
 </style>
 </head>
 
 <body>
 
-<div class="container">
+<div class="header">Zero Quantum Frequency™</div>
 
-<h1>📿 गीता ज्ञान Quiz</h1>
-
-<div class="top-bar">
-    <div>⭐ Marks: <span id="score">0</span></div>
-    <div>🔥 Streak: <span id="streak">0</span></div>
-    <div>🏆 Level: <span id="level">1</span></div>
+<!-- 🔮 HERO -->
+<div class="card hero">
+⚡ क्या आप वही जी रहे हैं  
+<br>
+<span>जो आप सोचते हैं?</span>
+<br><br>
+या वही सोच रहे हैं  
+<br>
+जो आपको दिखाया गया है?
 </div>
 
-<div class="card fade">
-
-<div id="question"></div>
-<div id="options"></div>
-
-<button class="next-btn" onclick="nextQuestion()" style="display:none;">
-🚀 आगे बढ़ें
-</button>
-
-<div class="result" id="result"></div>
+<!-- 🧠 GEETA + LAW -->
+<div class="card">
+<div class="sutra">
+🧿 गीता सूत्र:
+<br><br>
+“मन ही कारण है  
+बंधन का भी… और मुक्ति का भी”
 </div>
 
+<br>
+
+<div>
+👉 विचार = Frequency  
+<br>
+👉 Frequency = Attraction  
+<br>
+👉 Attraction = Reality
+</div>
 </div>
 
-<script>
+<!-- 🔥 ACTION -->
+<div class="card">
 
-let questions = [
-{
-q: "गीता में अर्जुन के सारथी कौन थे?",
-o: ["शिव", "कृष्ण", "इंद्र", "ब्रह्मा"],
-a: "कृष्ण"
-},
-{
-q: "कर्म करने का अधिकार किस पर है?",
-o: ["फल पर", "कर्म पर", "दूसरों पर", "भाग्य पर"],
-a: "कर्म पर"
-},
-{
-q: "गीता किस ग्रंथ का हिस्सा है?",
-o: ["रामायण", "महाभारत", "वेद", "पुराण"],
-a: "महाभारत"
-},
-{
-q: "योग का अर्थ क्या है?",
-o: ["भागना", "जुड़ना", "सोना", "लड़ना"],
-a: "जुड़ना"
-},
-{
-q: "अहंकार क्या करता है?",
-o: ["उन्नति", "विनाश", "शांति", "सुख"],
-a: "विनाश"
-}
-];
+<button class="btn green">🎧 आज का रहस्य सुनें</button>
 
-let current = 0;
-let score = 0;
-let streak = 0;
-let level = 1;
-let selected = null;
-let bestStreak = 0;
+<button class="btn yellow">🧠 आत्म-परीक्षण शुरू करें</button>
 
-function loadQuestion(){
-    let q = questions[current];
+<button class="btn outline">✨ अपना Reality Code जानें</button>
 
-    document.getElementById("question").innerText = (current+1) + ". " + q.q;
+</div>
 
-    let html = "";
-    q.o.forEach(opt=>{
-        html += `<div class="option" onclick="selectOption('${opt}', this)">${opt}</div>`;
-    });
+<!-- 🌌 CLOSING -->
+<div class="card">
+आप शरीर नहीं हैं…  
+<br>
+आप एक <span style="color:#00e5ff;">Frequency</span> हैं  
+<br><br>
+और जब Frequency बदलती है…  
+<br>
+तो जीवन बदलता है
+</div>
 
-    document.getElementById("options").innerHTML = html;
-    document.querySelector(".next-btn").style.display = "none";
-    selected = null;
-}
-
-function selectOption(opt, el){
-
-    if(selected) return;
-
-    selected = opt;
-    let correct = questions[current].a;
-
-    document.querySelectorAll(".option").forEach(o=>{
-        o.style.pointerEvents = "none";
-
-        if(o.innerText === correct){
-            o.classList.add("correct");
-        }
-
-        if(o.innerText === opt && opt !== correct){
-            o.classList.add("wrong");
-        }
-    });
-
-    if(opt === correct){
-        score += 10;
-        streak++;
-
-        if(streak > bestStreak){
-            bestStreak = streak;
-        }
-
-    } else {
-        streak = 0;
-    }
-
-    level = Math.floor(score / 30) + 1;
-
-    updateTop();
-
-    document.querySelector(".next-btn").style.display = "block";
-}
-function nextQuestion(){
-
-    current++;
-
-    if(current >= questions.length){
-        showResult();
-        return;
-    }
-
-    loadQuestion();
-}
-
-function updateTop(){
-    document.getElementById("score").innerText = score;
-    document.getElementById("streak").innerText = streak;
-    document.getElementById("level").innerText = level;
-}
-
-function showResult(){
-
-    document.getElementById("question").innerText = "✨ आपका परिणाम";
-    document.getElementById("options").innerHTML = "";
-
-    let msg = "";
-    let advice = "";
-    let sankalp = "";
-
-    // 🎯 Score based message + Sankalp
-    if(score >= 60){
-        msg = "🌟 अद्भुत! आप गीता के गहरे जानकार हैं।";
-        advice = "👉 आप ज्ञान के मार्ग पर आगे बढ़ रहे हैं। अब इस ज्ञान को जीवन में उतारें - यही सच्ची साधना है।";
-        sankalp = "🧘 आज का संकल्प: मैं अपने ज्ञान को कर्म में बदलूँगा।";
-    } 
-    else if(score >= 30){
-        msg = "👍 अच्छा! आप सही दिशा में हैं।";
-        advice = "👉 निरंतर अभ्यास और समझ से आपका ज्ञान और बढ़ेगा। रोज थोड़ा सीखना ही असली प्रगति है।";
-        sankalp = "🌿 आज का संकल्प: मैं आज कुछ नया सीखूँगा और उसे अपनाऊँगा।";
-    } 
-    else{
-        msg = "📿 शुरुआत शानदार है… सीखते रहें।";
-        advice = "👉 हर महान यात्रा एक छोटे कदम से शुरू होती है। धैर्य रखें और ज्ञान को अपनाते रहें।";
-        sankalp = "🔥 आज का संकल्प: मैं हार नहीं मानूँगा और सीखते रहूँगा।";
-    }
-
-    // 🌿 FINAL RESULT UI (Button सहित)
-    document.getElementById("result").innerHTML = `
-    <div style="font-size:22px; font-weight:bold; color:gold; margin-bottom:10px;">
-        ${msg}
-    </div>
-
-    <div style="font-size:16px; margin-bottom:15px; color:#ffffff;">
-        ${advice}
-    </div>
-
-    <div style="font-size:18px; margin-bottom:15px; color:#00e676; font-weight:bold;">
-        ${sankalp}
-    </div>
-
-    <div style="font-size:18px; line-height:1.6;">
-        ⭐ कुल अंक: <b>${score}</b><br>
-        🔥 Best Streak: <b>${bestStreak}</b><br>
-        🏆 Level: <b>${level}</b>
-    </div>
-
-    <br>
-    <button onclick="goSankalp()" 
-    style="padding:12px 18px; border:none; border-radius:10px; 
-    background: linear-gradient(45deg, #00c853, #00e676); 
-    font-weight:bold; cursor:pointer;">
-    🌿 आत्म-निरीक्षण करें
-    </button>
-    <br><br>
-    <button onclick="location.reload()" 
-    style="margin-top:15px; padding:12px 18px; border:none; border-radius:10px; 
-    background: linear-gradient(45deg, #ffd700, #ffb300); font-weight:bold; cursor:pointer;">
-    🔁 फिर से खेलें
-    </button>
-
-  
-
-   
-    `;
-
-    document.querySelector(".next-btn").style.display = "none";
-}
-
-loadQuestion();
-function saveSankalp(){
-    alert("🌿 बहुत अच्छा! आपने आज का आत्म-निरीक्षण किया।");
-}
-    function goSankalp(){
-     window.location.href = "sankalp.html";
-}
-</script>
+<div class="footer">
+© Zero Quantum Frequency™
+</div>
 
 </body>
 </html>
