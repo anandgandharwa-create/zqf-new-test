@@ -79,6 +79,11 @@ select {
     margin-top: 10px;
     color: gold;
 }
+    #score {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
 </style>
 </head>
 
@@ -196,9 +201,10 @@ function showResult(score) {
     let streak = updateStreak(); // ✅ streak लो
 
     // ✅ Proper UI display
-    document.getElementById("score").innerHTML = `
-    ${level} <br> 🔥 Streak: ${streak}
-    `;
+   document.getElementById("score").innerHTML = `
+<span>${level}</span>
+<span>🔥 Streak: ${streak}</span>
+`;
 
     let box = document.getElementById("resultBox");
     box.style.display = "block";
