@@ -10,141 +10,102 @@
 body {
     margin: 0;
     font-family: 'Segoe UI', sans-serif;
-    background: radial-gradient(circle at top, #001a2e, #000814);
+    background: linear-gradient(180deg, #000814, #001d3d);
     color: white;
     text-align: center;
 }
 
 /* Header */
 .header {
-    padding: 15px;
-    font-size: 20px;
+    padding: 16px;
+    font-size: 18px;
     background: #4b1d6b;
-    font-weight: bold;
 }
 
-/* Card Base */
-.card {
-    margin: 20px;
+/* Center Container */
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 85vh;
     padding: 20px;
-    border-radius: 18px;
-    background: rgba(255,255,255,0.05);
-    backdrop-filter: blur(10px);
-    box-shadow: 0 0 25px rgba(0,255,255,0.1);
 }
 
-/* Hero */
-.hero {
+/* Geeta Line */
+.gyan {
     font-size: 20px;
     line-height: 1.6;
-}
-.hero span {
-    color: #ffd700;
-    font-weight: bold;
+    margin-bottom: 40px;
 }
 
-/* Sutra */
-.sutra {
-    font-size: 16px;
-    color: #00ffcc;
+.highlight {
+    color: #ffd700;
 }
 
 /* Buttons */
 .btn {
-    display: block;
+    padding: 16px;
     margin: 12px auto;
-    padding: 14px;
     width: 85%;
-    border-radius: 30px;
+    border-radius: 40px;
+    font-size: 16px;
     border: none;
-    font-size: 15px;
     cursor: pointer;
 }
 
-.green {
-    background: linear-gradient(45deg, #00c853, #00e676);
+/* Geeta Button */
+.gyan-btn {
+    background: linear-gradient(45deg, #00c853, #69f0ae);
     color: black;
+    font-weight: bold;
 }
 
-.yellow {
-    background: linear-gradient(45deg, #ffcc00, #ffd600);
-    color: black;
-}
-
-.outline {
-    border: 1px solid #ffd700;
+/* Activity Button */
+.act-btn {
     background: transparent;
+    border: 1px solid #ffd700;
     color: #ffd700;
 }
 
 /* Footer */
 .footer {
+    position: absolute;
+    bottom: 10px;
+    width: 100%;
     font-size: 12px;
-    opacity: 0.6;
-    margin: 20px;
+    opacity: 0.5;
 }
 </style>
+
 </head>
 
 <body>
 
 <div class="header">Zero Quantum Frequency™</div>
 
-<!-- 🔮 HERO -->
-<div class="card hero">
-⚡ क्या आप वही जी रहे हैं  
-<br>
-<span>जो आप सोचते हैं?</span>
-<br><br>
-या वही सोच रहे हैं  
-<br>
-जो आपको दिखाया गया है?
+<div class="container">
+
+<!-- 🔮 SINGLE GEETA LINE -->
+<div class="gyan">
+⚡ “मन ही कारण है  
+<span class="highlight">बंधन</span> का भी…  
+और <span class="highlight">मुक्ति</span> का भी”
 </div>
 
-<!-- 🧠 GEETA + LAW -->
-<div class="card">
-<div class="sutra">
-🧿 गीता सूत्र:
-<br><br>
-“मन ही कारण है  
-बंधन का भी… और मुक्ति का भी”
-</div>
+<!-- 🟢 BUTTON 1 -->
+<button class="btn gyan-btn">
+🧿 आज का गीता ज्ञान
+</button>
 
-<br>
+<!-- 🟡 BUTTON 2 -->
+<button class="btn act-btn">
+⚡ आज की Activity शुरू करें
+</button>
 
-<div>
-👉 विचार = Frequency  
-<br>
-👉 Frequency = Attraction  
-<br>
-👉 Attraction = Reality
-</div>
-</div>
-
-<!-- 🔥 ACTION -->
-<div class="card">
-
-<button class="btn green">🎧 आज का रहस्य सुनें</button>
-
-<button class="btn yellow">🧠 आत्म-परीक्षण शुरू करें</button>
-
-<button class="btn outline">✨ अपना Reality Code जानें</button>
-
-</div>
-
-<!-- 🌌 CLOSING -->
-<div class="card">
-आप शरीर नहीं हैं…  
-<br>
-आप एक <span style="color:#00e5ff;">Frequency</span> हैं  
-<br><br>
-और जब Frequency बदलती है…  
-<br>
-तो जीवन बदलता है
 </div>
 
 <div class="footer">
-© Zero Quantum Frequency™
+आप एक Frequency हैं
 </div>
 
 </body>
