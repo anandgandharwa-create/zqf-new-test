@@ -10,7 +10,7 @@
 body {
     margin: 0;
     font-family: 'Segoe UI', sans-serif;
-    background: radial-gradient(circle at top, #1a0033, #000814);
+    background: radial-gradient(circle at top, #0a0f2c, #000814);
     color: white;
     text-align: center;
 }
@@ -20,7 +20,7 @@ body {
     padding: 15px;
     font-size: 20px;
     font-weight: bold;
-    background: linear-gradient(90deg, #4b0082, #6a0dad);
+    background: linear-gradient(90deg, #3a0ca3, #7209b7);
 }
 
 /* CARD */
@@ -29,26 +29,25 @@ body {
     margin: 20px;
     padding: 20px;
     border-radius: 20px;
-    box-shadow: 0 0 20px rgba(255,255,255,0.05);
+    box-shadow: 0 0 25px rgba(255,255,255,0.05);
     animation: fadeIn 1s ease;
 }
 
 /* HOOK */
 .hook {
     font-size: 20px;
-    color: #ffd700;
+    color: #ffd60a;
     animation: pulse 2s infinite;
 }
 
-/* HEART SECTION */
-.heart {
-    background: linear-gradient(135deg, #ff4d6d, #ff85a1);
-    color: white;
+/* UNIVERSAL MESSAGE */
+.universal {
+    background: linear-gradient(135deg, #4361ee, #4cc9f0);
 }
 
 /* BUTTON */
 .btn {
-    margin: 10px;
+    margin: 12px;
     padding: 15px;
     border-radius: 30px;
     font-size: 16px;
@@ -58,23 +57,23 @@ body {
 }
 
 .btn-primary {
-    background: #00c896;
+    background: #00f5d4;
     color: black;
 }
 
 .btn-primary:hover {
-    transform: scale(1.05);
-    box-shadow: 0 0 15px #00c896;
+    transform: scale(1.06);
+    box-shadow: 0 0 20px #00f5d4;
 }
 
 .btn-secondary {
-    background: #ffd700;
+    background: #ffd60a;
     color: black;
 }
 
 .btn-secondary:hover {
-    transform: scale(1.05);
-    box-shadow: 0 0 15px #ffd700;
+    transform: scale(1.06);
+    box-shadow: 0 0 20px #ffd60a;
 }
 
 /* STREAK */
@@ -83,7 +82,7 @@ body {
     opacity: 0.8;
 }
 
-/* BOTTOM NAV */
+/* NAV */
 .nav {
     position: fixed;
     bottom: 0;
@@ -104,16 +103,16 @@ body {
     opacity: 1;
 }
 
-/* ANIMATIONS */
+/* ANIMATION */
 @keyframes fadeIn {
     from {opacity: 0; transform: translateY(20px);}
     to {opacity: 1; transform: translateY(0);}
 }
 
 @keyframes pulse {
-    0% {opacity: 0.7;}
+    0% {opacity: 0.6;}
     50% {opacity: 1;}
-    100% {opacity: 0.7;}
+    100% {opacity: 0.6;}
 }
 </style>
 
@@ -126,17 +125,20 @@ body {
 <!-- HOOK -->
 <div class="card">
     <div class="hook">
-        ⚡ रुको… एक सच जो 99% लोग नहीं देख पाते…
+        ⚡ एक सवाल… जो आपकी पूरी सोच बदल सकता है…
     </div>
-    <p>क्या तुम वही हो… जो तुम सोचती हो?</p>
+    <p>
+    क्या आप सच में वही हैं… जो आप अपने बारे में मानते हैं?
+    </p>
 </div>
 
-<!-- HEART CONNECT -->
-<div class="card heart">
-    💖 आज का दिल संदेश  
+<!-- UNIVERSAL CONNECT -->
+<div class="card universal">
+    🌌 आज का संदेश  
     <p>
-    तुम्हें हमेशा strong नहीं रहना…  
-    कभी-कभी टूटना भी healing होता है…
+    आप जो ढूंढ रहे हैं…  
+    वो कहीं बाहर नहीं है…  
+    वो पहले से ही आपके भीतर मौजूद है…
     </p>
 </div>
 
@@ -144,33 +146,33 @@ body {
 <div class="card">
     🌿 आज का विचार  
     <p>
-    जब आपका इरादा साफ होता है…  
-    तो रास्ते अपने आप बनते हैं…
+    जब मन शांत होता है…  
+    तब जीवन अपने आप सही दिशा दिखाता है…
     </p>
 </div>
 
 <!-- BUTTONS -->
 <button class="btn btn-primary">
-👉 सुनो… ये तुम्हारे लिए है
+👉 सुनें… आपके लिए एक संदेश
 </button>
 
 <button class="btn btn-secondary">
-👉 तुम्हारा मन तुमसे क्या छुपा रहा है
+👉 जानें… आपका मन क्या संकेत दे रहा है
 </button>
 
 <!-- STREAK -->
 <div class="card streak">
 🔥 आज का स्ट्रीक: 3 दिन  
 <br>
-अगर आज miss किया… तो chain टूट जाएगी
+लगातार जुड़े रहें… अनुभव गहराता जाएगा
 </div>
 
-<!-- NAVIGATION -->
+<!-- NAV -->
 <div class="nav">
     <div>🏠 Home</div>
     <div>🔮 Secret</div>
-    <div>❤️ Love</div>
-    <div>⚡ Mind</div>
+    <div>🧠 Mind</div>
+    <div>⚡ Energy</div>
 </div>
 
 </body>
