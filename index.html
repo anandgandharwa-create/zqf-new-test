@@ -10,222 +10,168 @@
 body {
     margin: 0;
     font-family: 'Segoe UI', sans-serif;
-    background: linear-gradient(180deg, #000814, #001d3d);
+    background: radial-gradient(circle at top, #1a0033, #000814);
     color: white;
     text-align: center;
 }
 
-/* Header */
+/* HEADER */
 .header {
     padding: 15px;
-    background: #4b1d6b;
-}
-
-/* Screens */
-.screen {
-    display: none;
-    padding: 20px;
-}
-.active {
-    display: block;
-}
-
-/* Text */
-.gyan {
     font-size: 20px;
-    margin: 30px 0;
+    font-weight: bold;
+    background: linear-gradient(90deg, #4b0082, #6a0dad);
 }
 
-.highlight {
+/* CARD */
+.card {
+    background: rgba(255,255,255,0.05);
+    margin: 20px;
+    padding: 20px;
+    border-radius: 20px;
+    box-shadow: 0 0 20px rgba(255,255,255,0.05);
+    animation: fadeIn 1s ease;
+}
+
+/* HOOK */
+.hook {
+    font-size: 20px;
     color: #ffd700;
+    animation: pulse 2s infinite;
 }
 
-/* Buttons */
+/* HEART SECTION */
+.heart {
+    background: linear-gradient(135deg, #ff4d6d, #ff85a1);
+    color: white;
+}
+
+/* BUTTON */
 .btn {
-    padding: 14px;
     margin: 10px;
-    width: 85%;
+    padding: 15px;
     border-radius: 30px;
+    font-size: 16px;
+    cursor: pointer;
     border: none;
-    font-size: 15px;
+    transition: 0.3s;
 }
 
-.green {
-    background: #00c853;
+.btn-primary {
+    background: #00c896;
     color: black;
 }
 
-.yellow {
-    background: #ffd600;
+.btn-primary:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 15px #00c896;
+}
+
+.btn-secondary {
+    background: #ffd700;
     color: black;
 }
 
-.outline {
-    border: 1px solid #ffd700;
-    background: transparent;
-    color: #ffd700;
+.btn-secondary:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 15px #ffd700;
 }
 
-/* Question */
-.q {
-    margin: 20px 0;
+/* STREAK */
+.streak {
+    font-size: 14px;
+    opacity: 0.8;
 }
 
-.footer {
-    font-size: 12px;
-    opacity: 0.5;
-    margin-top: 20px;
+/* BOTTOM NAV */
+.nav {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    background: #000814;
+    display: flex;
+    justify-content: space-around;
+    padding: 10px 0;
+    border-top: 1px solid rgba(255,255,255,0.1);
+}
+
+.nav div {
+    font-size: 14px;
+    opacity: 0.7;
+}
+
+.nav div:hover {
+    opacity: 1;
+}
+
+/* ANIMATIONS */
+@keyframes fadeIn {
+    from {opacity: 0; transform: translateY(20px);}
+    to {opacity: 1; transform: translateY(0);}
+}
+
+@keyframes pulse {
+    0% {opacity: 0.7;}
+    50% {opacity: 1;}
+    100% {opacity: 0.7;}
 }
 </style>
+
 </head>
 
 <body>
 
 <div class="header">Zero Quantum Frequency™</div>
 
-<!-- 🟢 HOME -->
-<div id="home" class="screen active">
-
-<div class="gyan">
-⚡ “मन ही कारण है  
-<span class="highlight">बंधन</span> का भी…  
-और <span class="highlight">मुक्ति</span> का भी”
+<!-- HOOK -->
+<div class="card">
+    <div class="hook">
+        ⚡ रुको… एक सच जो 99% लोग नहीं देख पाते…
+    </div>
+    <p>क्या तुम वही हो… जो तुम सोचती हो?</p>
 </div>
 
-<button class="btn green" onclick="show('gyanPage')">
-🧿 गीता ज्ञान
+<!-- HEART CONNECT -->
+<div class="card heart">
+    💖 आज का दिल संदेश  
+    <p>
+    तुम्हें हमेशा strong नहीं रहना…  
+    कभी-कभी टूटना भी healing होता है…
+    </p>
+</div>
+
+<!-- THOUGHT -->
+<div class="card">
+    🌿 आज का विचार  
+    <p>
+    जब आपका इरादा साफ होता है…  
+    तो रास्ते अपने आप बनते हैं…
+    </p>
+</div>
+
+<!-- BUTTONS -->
+<button class="btn btn-primary">
+👉 सुनो… ये तुम्हारे लिए है
 </button>
 
-<button class="btn outline" onclick="show('activity')">
-⚡ Activity शुरू करें
+<button class="btn btn-secondary">
+👉 तुम्हारा मन तुमसे क्या छुपा रहा है
 </button>
 
+<!-- STREAK -->
+<div class="card streak">
+🔥 आज का स्ट्रीक: 3 दिन  
+<br>
+अगर आज miss किया… तो chain टूट जाएगी
 </div>
 
-<!-- 🧿 GEETA PAGE -->
-<div id="gyanPage" class="screen">
-
-<h3>आज का गीता ज्ञान</h3>
-
-<p>
-“आप अपने विचार नहीं हैं…  
-आप उनके साक्षी हैं”
-</p>
-
-<button class="btn yellow" onclick="show('home')">🔙 वापस</button>
-
+<!-- NAVIGATION -->
+<div class="nav">
+    <div>🏠 Home</div>
+    <div>🔮 Secret</div>
+    <div>❤️ Love</div>
+    <div>⚡ Mind</div>
 </div>
-
-<!-- ⚡ ACTIVITY MENU -->
-<div id="activity" class="screen">
-
-<h3>Activity</h3>
-
-<button class="btn green" onclick="show('quiz')">
-🧠 Geeta Quiz
-</button>
-
-<button class="btn yellow" onclick="show('test')">
-🌌 Subconscious Test
-</button>
-
-<button class="btn outline" onclick="show('home')">🔙 वापस</button>
-
-</div>
-
-<!-- 🧠 QUIZ -->
-<div id="quiz" class="screen">
-
-<h3>Quiz</h3>
-
-<div class="q">
-मनुष्य का शत्रु कौन है?<br>
-<button onclick="answerQuiz(false)">दुनिया</button><br>
-<button onclick="answerQuiz(true)">मन</button><br>
-<button onclick="answerQuiz(false)">भाग्य</button>
-</div>
-
-<button class="btn yellow" onclick="show('test')">Next</button>
-
-</div>
-
-<!-- 🌌 TEST -->
-<div id="test" class="screen">
-
-<h3>Subconscious Test</h3>
-
-<div class="q">
-पैसा सोचते समय feeling?<br>
-<button onclick="answerBelief('positive')">😌</button>
-<button onclick="answerBelief('neutral')">😐</button>
-<button onclick="answerBelief('negative')">😟</button>
-</div>
-
-<button class="btn green" onclick="showResult()">Result</button>
-
-</div>
-
-<!-- 🔥 RESULT -->
-<div id="result" class="screen">
-
-<h3>आपका Result</h3>
-
-<p id="resultText"></p>
-
-<button class="btn outline" onclick="resetApp()">🔄 Restart</button>
-
-</div>
-
-<div class="footer">आप एक Frequency हैं</div>
-
-<script>
-
-let quizScore = 0;
-let beliefScore = 0;
-
-function show(id){
-    document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
-    document.getElementById(id).classList.add('active');
-}
-
-function answerQuiz(correct){
-    if(correct) quizScore++;
-}
-
-function answerBelief(type){
-    if(type === "positive") beliefScore += 2;
-    if(type === "neutral") beliefScore += 1;
-}
-
-function showResult(){
-
-    let msg = "";
-
-    if(quizScore >= 1 && beliefScore < 2){
-        msg = "आप जानते हैं... लेकिन मानते नहीं";
-    }
-    else if(quizScore < 1 && beliefScore >= 2){
-        msg = "आप मानते हैं... लेकिन स्पष्ट ज्ञान नहीं";
-    }
-    else if(quizScore >= 1 && beliefScore >= 2){
-        msg = "आप alignment में हैं 🔥";
-    }
-    else{
-        msg = "आपको दोनों पर काम करना है";
-    }
-
-    document.getElementById("resultText").innerText = msg;
-
-    show('result');
-}
-
-function resetApp(){
-    quizScore = 0;
-    beliefScore = 0;
-    show('home');
-}
-
-</script>
 
 </body>
 </html>
