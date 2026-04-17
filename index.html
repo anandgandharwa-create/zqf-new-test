@@ -7,79 +7,101 @@
 <title>Zero Quantum Frequency</title>
 
 <style>
+
 body {
     margin: 0;
     font-family: 'Segoe UI', sans-serif;
-    background: radial-gradient(circle at top, #0a0f2c, #000814);
-    color: white;
-    text-align: center;
+    background: linear-gradient(180deg, #eef2ff, #ffffff);
+    color: #111;
+}
+
+/* CONTAINER (Mobile Center) */
+.container {
+    max-width: 420px;
+    margin: auto;
+    padding-bottom: 80px;
 }
 
 /* HEADER */
 .header {
-    padding: 15px;
-    font-size: 20px;
-    font-weight: bold;
-    background: linear-gradient(90deg, #3a0ca3, #7209b7);
+    padding: 16px;
+    text-align: center;
+    font-size: 18px;
+    font-weight: 600;
+    background: white;
+    border-bottom: 1px solid #eee;
 }
 
 /* CARD */
 .card {
-    background: rgba(255,255,255,0.05);
-    margin: 20px;
-    padding: 20px;
-    border-radius: 20px;
-    box-shadow: 0 0 25px rgba(255,255,255,0.05);
-    animation: fadeIn 1s ease;
+    background: white;
+    margin: 14px;
+    padding: 18px;
+    border-radius: 16px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    animation: fadeIn 0.6s ease;
 }
 
 /* HOOK */
 .hook {
-    font-size: 20px;
-    color: #ffd60a;
-    animation: pulse 2s infinite;
+    font-size: 18px;
+    font-weight: 600;
+    color: #5a189a;
 }
 
-/* UNIVERSAL MESSAGE */
+/* UNIVERSAL */
 .universal {
     background: linear-gradient(135deg, #4361ee, #4cc9f0);
+    color: white;
 }
 
-/* BUTTON */
+/* TITLE */
+.title {
+    font-weight: 600;
+    margin-bottom: 8px;
+}
+
+/* TEXT */
+p {
+    font-size: 15px;
+    line-height: 1.5;
+    margin: 0;
+}
+
+/* BUTTONS */
 .btn {
-    margin: 12px;
-    padding: 15px;
-    border-radius: 30px;
-    font-size: 16px;
-    cursor: pointer;
+    display: block;
+    width: calc(100% - 28px);
+    margin: 10px 14px;
+    padding: 14px;
+    border-radius: 12px;
+    font-size: 15px;
     border: none;
-    transition: 0.3s;
+    cursor: pointer;
+    transition: 0.2s;
 }
 
+/* PRIMARY */
 .btn-primary {
-    background: #00f5d4;
-    color: black;
+    background: #06d6a0;
+    color: #000;
 }
 
-.btn-primary:hover {
-    transform: scale(1.06);
-    box-shadow: 0 0 20px #00f5d4;
-}
-
+/* SECONDARY */
 .btn-secondary {
-    background: #ffd60a;
-    color: black;
+    background: #ffd166;
+    color: #000;
 }
 
-.btn-secondary:hover {
-    transform: scale(1.06);
-    box-shadow: 0 0 20px #ffd60a;
+.btn:hover {
+    transform: scale(1.02);
 }
 
 /* STREAK */
 .streak {
+    text-align: center;
     font-size: 14px;
-    opacity: 0.8;
+    color: #555;
 }
 
 /* NAV */
@@ -87,89 +109,91 @@ body {
     position: fixed;
     bottom: 0;
     width: 100%;
-    background: #000814;
+    max-width: 420px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: white;
     display: flex;
     justify-content: space-around;
     padding: 10px 0;
-    border-top: 1px solid rgba(255,255,255,0.1);
+    border-top: 1px solid #eee;
 }
 
 .nav div {
-    font-size: 14px;
-    opacity: 0.7;
+    font-size: 13px;
+    color: #777;
 }
 
-.nav div:hover {
-    opacity: 1;
+.nav div.active {
+    color: #4361ee;
+    font-weight: 600;
 }
 
 /* ANIMATION */
 @keyframes fadeIn {
-    from {opacity: 0; transform: translateY(20px);}
+    from {opacity: 0; transform: translateY(10px);}
     to {opacity: 1; transform: translateY(0);}
 }
 
-@keyframes pulse {
-    0% {opacity: 0.6;}
-    50% {opacity: 1;}
-    100% {opacity: 0.6;}
-}
 </style>
-
 </head>
 
 <body>
+
+<div class="container">
 
 <div class="header">Zero Quantum Frequency™</div>
 
 <!-- HOOK -->
 <div class="card">
     <div class="hook">
-        ⚡ एक सवाल… जो आपकी पूरी सोच बदल सकता है…
+        ⚡ एक सवाल… जो आपकी सोच बदल सकता है…
     </div>
     <p>
     क्या आप सच में वही हैं… जो आप अपने बारे में मानते हैं?
     </p>
 </div>
 
-<!-- UNIVERSAL CONNECT -->
+<!-- MESSAGE -->
 <div class="card universal">
-    🌌 आज का संदेश  
+    <div class="title">🌌 आज का संदेश</div>
     <p>
     आप जो ढूंढ रहे हैं…  
-    वो कहीं बाहर नहीं है…  
-    वो पहले से ही आपके भीतर मौजूद है…
+    वो बाहर नहीं…  
+    वो पहले से ही आपके भीतर है…
     </p>
 </div>
 
 <!-- THOUGHT -->
 <div class="card">
-    🌿 आज का विचार  
+    <div class="title">🌿 आज का विचार</div>
     <p>
     जब मन शांत होता है…  
-    तब जीवन अपने आप सही दिशा दिखाता है…
+    जीवन सही दिशा दिखाता है…
     </p>
 </div>
 
 <!-- BUTTONS -->
 <button class="btn btn-primary">
-👉 सुनें… आपके लिए एक संदेश
+👉 सुनें… आपका संदेश
 </button>
 
 <button class="btn btn-secondary">
-👉 जानें… आपका मन क्या संकेत दे रहा है
+👉 जानें… मन का संकेत
 </button>
 
 <!-- STREAK -->
 <div class="card streak">
 🔥 आज का स्ट्रीक: 3 दिन  
 <br>
-लगातार जुड़े रहें… अनुभव गहराता जाएगा
+लगातार जुड़े रहें…
+</div>
+
 </div>
 
 <!-- NAV -->
 <div class="nav">
-    <div>🏠 Home</div>
+    <div class="active">🏠 Home</div>
     <div>🔮 Secret</div>
     <div>🧠 Mind</div>
     <div>⚡ Energy</div>
