@@ -8,70 +8,88 @@
 body{
     margin:0;
     font-family: 'Segoe UI', sans-serif;
-    background: linear-gradient(135deg,#1e3c72,#2a5298);
+    background: linear-gradient(135deg,#1a1a1a,#000000);
     color:white;
+    padding-bottom:80px;
 }
 
 /* HEADER */
 .header{
     text-align:center;
-    padding:15px;
-    font-size:20px;
+    padding:12px;
+    font-size:16px;
     font-weight:bold;
-    background:rgba(0,0,0,0.4);
-    backdrop-filter:blur(10px);
+    background:linear-gradient(45deg,#FFD700,#FFA500);
+    color:black;
+    position:sticky;
+    top:0;
+    z-index:10;
 }
 
 /* CARD */
 .card{
-    margin:20px;
-    padding:20px;
-    border-radius:16px;
-    background:rgba(255,255,255,0.08);
-    backdrop-filter:blur(12px);
-    box-shadow:0 0 15px rgba(0,0,0,0.4);
+    margin:12px;
+    padding:16px;
+    border-radius:14px;
+    background:rgba(255,215,0,0.08);
+    backdrop-filter:blur(10px);
+    box-shadow:0 0 12px rgba(255,215,0,0.2);
 }
 
 /* SHLOK */
 .shlok{
-    font-size:18px;
+    font-size:17px;
     color:#FFD700;
     text-align:center;
+    font-weight:bold;
 }
 
-/* BUTTON */
-.btn{
-    display:block;
-    margin:10px 0;
-    padding:12px;
-    border-radius:12px;
-    border:none;
-    background:linear-gradient(45deg,#FFD700,#FFA500);
-    color:black;
-    font-weight:bold;
-    cursor:pointer;
+/* TEXT */
+p{
+    font-size:14px;
+    line-height:1.5;
 }
 
 /* OPTION */
 .option{
-    background:rgba(255,255,255,0.1);
-    padding:10px;
+    background:rgba(255,255,255,0.05);
+    padding:12px;
     margin:8px 0;
     border-radius:10px;
     cursor:pointer;
+    transition:0.2s;
+    font-size:14px;
 }
 
 .option:hover{
     background:#FFD700;
     color:black;
+    transform:scale(1.02);
 }
 
 /* RESULT */
 .result{
     text-align:center;
-    font-size:18px;
+    font-size:16px;
     margin-top:10px;
     color:#00FFAA;
+}
+
+/* BUTTON */
+.btn{
+    position:fixed;
+    bottom:15px;
+    left:50%;
+    transform:translateX(-50%);
+    width:85%;
+    padding:14px;
+    border-radius:30px;
+    border:none;
+    background:linear-gradient(45deg,#FFD700,#FFA500);
+    color:black;
+    font-weight:bold;
+    font-size:16px;
+    box-shadow:0 5px 15px rgba(0,0,0,0.5);
 }
 </style>
 </head>
