@@ -1,203 +1,174 @@
 <!DOCTYPE html>
 <html lang="hi">
 <head>
-<meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>Zero Quantum Frequency</title>
+<title>Geeta Learning Experience</title>
 
 <style>
-
-body {
-    margin: 0;
+body{
+    margin:0;
     font-family: 'Segoe UI', sans-serif;
-    background: linear-gradient(180deg, #eef2ff, #ffffff);
-    color: #111;
-}
-
-/* CONTAINER (Mobile Center) */
-.container {
-    max-width: 420px;
-    margin: auto;
-    padding-bottom: 80px;
+    background: linear-gradient(135deg,#1e3c72,#2a5298);
+    color:white;
 }
 
 /* HEADER */
-.header {
-    padding: 16px;
-    text-align: center;
-    font-size: 18px;
-    font-weight: 600;
-    background: white;
-    border-bottom: 1px solid #eee;
+.header{
+    text-align:center;
+    padding:15px;
+    font-size:20px;
+    font-weight:bold;
+    background:rgba(0,0,0,0.4);
+    backdrop-filter:blur(10px);
 }
 
 /* CARD */
-.card {
-    background: white;
-    margin: 14px;
-    padding: 18px;
-    border-radius: 16px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
-    animation: fadeIn 0.6s ease;
+.card{
+    margin:20px;
+    padding:20px;
+    border-radius:16px;
+    background:rgba(255,255,255,0.08);
+    backdrop-filter:blur(12px);
+    box-shadow:0 0 15px rgba(0,0,0,0.4);
 }
 
-/* HOOK */
-.hook {
-    font-size: 18px;
-    font-weight: 600;
-    color: #5a189a;
+/* SHLOK */
+.shlok{
+    font-size:18px;
+    color:#FFD700;
+    text-align:center;
 }
 
-/* UNIVERSAL */
-.universal {
-    background: linear-gradient(135deg, #4361ee, #4cc9f0);
-    color: white;
+/* BUTTON */
+.btn{
+    display:block;
+    margin:10px 0;
+    padding:12px;
+    border-radius:12px;
+    border:none;
+    background:linear-gradient(45deg,#FFD700,#FFA500);
+    color:black;
+    font-weight:bold;
+    cursor:pointer;
 }
 
-/* TITLE */
-.title {
-    font-weight: 600;
-    margin-bottom: 8px;
+/* OPTION */
+.option{
+    background:rgba(255,255,255,0.1);
+    padding:10px;
+    margin:8px 0;
+    border-radius:10px;
+    cursor:pointer;
 }
 
-/* TEXT */
-p {
-    font-size: 15px;
-    line-height: 1.5;
-    margin: 0;
+.option:hover{
+    background:#FFD700;
+    color:black;
 }
 
-/* BUTTONS */
-.btn {
-    display: block;
-    width: calc(100% - 28px);
-    margin: 10px 14px;
-    padding: 14px;
-    border-radius: 12px;
-    font-size: 15px;
-    border: none;
-    cursor: pointer;
-    transition: 0.2s;
+/* RESULT */
+.result{
+    text-align:center;
+    font-size:18px;
+    margin-top:10px;
+    color:#00FFAA;
 }
-
-/* PRIMARY */
-.btn-primary {
-    background: #06d6a0;
-    color: #000;
-}
-
-/* SECONDARY */
-.btn-secondary {
-    background: #ffd166;
-    color: #000;
-}
-
-.btn:hover {
-    transform: scale(1.02);
-}
-
-/* STREAK */
-.streak {
-    text-align: center;
-    font-size: 14px;
-    color: #555;
-}
-
-/* NAV */
-.nav {
-    position: fixed;
-    bottom: 0;
-    width: 100%;
-    max-width: 420px;
-    left: 50%;
-    transform: translateX(-50%);
-    background: white;
-    display: flex;
-    justify-content: space-around;
-    padding: 10px 0;
-    border-top: 1px solid #eee;
-}
-
-.nav div {
-    font-size: 13px;
-    color: #777;
-}
-
-.nav div.active {
-    color: #4361ee;
-    font-weight: 600;
-}
-
-/* ANIMATION */
-@keyframes fadeIn {
-    from {opacity: 0; transform: translateY(10px);}
-    to {opacity: 1; transform: translateY(0);}
-}
-
 </style>
 </head>
 
 <body>
 
-<div class="container">
+<div class="header">🕉 Geeta Learning Game</div>
 
-<div class="header">Zero Quantum Frequency™</div>
-
-<!-- HOOK -->
 <div class="card">
-    <div class="hook">
-        ⚡ एक सवाल… जो आपकी सोच बदल सकता है…
-    </div>
-    <p>
-    क्या आप सच में वही हैं… जो आप अपने बारे में मानते हैं?
-    </p>
+    <div class="shlok" id="shlok"></div>
+    <p id="meaning"></p>
 </div>
 
-<!-- MESSAGE -->
-<div class="card universal">
-    <div class="title">🌌 आज का संदेश</div>
-    <p>
-    आप जो ढूंढ रहे हैं…  
-    वो बाहर नहीं…  
-    वो पहले से ही आपके भीतर है…
-    </p>
-</div>
-
-<!-- THOUGHT -->
 <div class="card">
-    <div class="title">🌿 आज का विचार</div>
-    <p>
-    जब मन शांत होता है…  
-    जीवन सही दिशा दिखाता है…
-    </p>
+    <h3>🧠 प्रश्न</h3>
+    <div id="question"></div>
+    <div id="options"></div>
+    <div class="result" id="result"></div>
 </div>
 
-<!-- BUTTONS -->
-<button class="btn btn-primary">
-👉 सुनें… आपका संदेश
-</button>
-
-<button class="btn btn-secondary">
-👉 जानें… मन का संकेत
-</button>
-
-<!-- STREAK -->
-<div class="card streak">
-🔥 आज का स्ट्रीक: 3 दिन  
-<br>
-लगातार जुड़े रहें…
+<div class="card">
+    <h3>✨ आज का चिंतन</h3>
+    <p id="reflection"></p>
 </div>
 
-</div>
+<button class="btn" onclick="next()">👉 अगला ज्ञान</button>
 
-<!-- NAV -->
-<div class="nav">
-    <div class="active">🏠 Home</div>
-    <div>🔮 Secret</div>
-    <div>🧠 Mind</div>
-    <div>⚡ Energy</div>
-</div>
+<script>
+
+let data = [
+{
+shlok:"कर्मण्येवाधिकारस्ते मा फलेषु कदाचन",
+meaning:"तुम्हारा अधिकार केवल कर्म करने में है, फल में नहीं।",
+question:"गीता क्या सिखाती है?",
+options:["फल पर ध्यान दो","कर्म पर ध्यान दो","कुछ मत करो"],
+answer:1,
+reflection:"आज बिना फल की चिंता किए काम करो।"
+},
+{
+shlok:"योगः कर्मसु कौशलम्",
+meaning:"कर्म में कुशलता ही योग है।",
+question:"योग का अर्थ क्या है?",
+options:["ध्यान","कुशल कर्म","त्याग"],
+answer:1,
+reflection:"आज अपना काम उत्कृष्टता से करो।"
+},
+{
+shlok:"न जायते म्रियते वा कदाचित्",
+meaning:"आत्मा न जन्म लेती है, न मरती है।",
+question:"आत्मा क्या है?",
+options:["नश्वर","अमर","कमजोर"],
+answer:1,
+reflection:"आप शरीर नहीं, चेतना हैं।"
+}
+];
+
+let index = 0;
+
+function load(){
+    let d = data[index];
+
+    document.getElementById("shlok").innerText = d.shlok;
+    document.getElementById("meaning").innerText = d.meaning;
+    document.getElementById("question").innerText = d.question;
+    document.getElementById("reflection").innerText = d.reflection;
+
+    let opt = document.getElementById("options");
+    opt.innerHTML = "";
+
+    d.options.forEach((o,i)=>{
+        let div = document.createElement("div");
+        div.className = "option";
+        div.innerText = o;
+
+        div.onclick = ()=>{
+            if(i === d.answer){
+                document.getElementById("result").innerText = "✅ सही उत्तर!";
+            }else{
+                document.getElementById("result").innerText = "❌ फिर सोचो...";
+            }
+        };
+
+        opt.appendChild(div);
+    });
+
+    document.getElementById("result").innerText="";
+}
+
+function next(){
+    index++;
+    if(index >= data.length) index = 0;
+    load();
+}
+
+load();
+
+</script>
 
 </body>
 </html>
